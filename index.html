@@ -52,7 +52,7 @@
         let htmlString = '';
         for (let file of data) {
           const fileName = file.path.replace('.md', '');
-          if (IGNORE_FILES.includes(fileName) {
+          if (IGNORE_FILES.includes(fileName)) {
             continue;
           }
           const fileDisplayName = fileName.split('-').join(' ');
