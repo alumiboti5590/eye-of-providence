@@ -10,10 +10,19 @@ plugins {
     id 'java'
     id 'edu.wpi.first.GradleRIO' version '2023.4.2'
     id 'com.diffplug.spotless' version '6.12.1'
+    id 'maven-publish'
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
+
+group = 'com.alumiboti5590'
+version = getTagName();
+
+def getTagName() {
+    String ref = System.getenv('GITHUB_REF') ?: "dev";
+    return ref.split('/').last();
+}
 
 // Defining my dependencies. In this case, WPILib (+ friends), and vendor libraries.
 // Also defines JUnit 5.
@@ -69,5 +78,46 @@ spotless {
     // optionally, Spotless can set copyright years by digging
     // through git history (see "license" section below)
     licenseHeader '/* $YEAR Written by Alumiboti FRC 5590 */'
+  }
+}
+
+publishing {
+  publications {
+    maven(MavenPublication) {
+      artifactId = 'eop'
+      from components.java
+
+      pom {
+        name = 'Eye of Providence'
+        description = 'Collection of reusable code for the FRC robots maintained by the Alumiboti.'
+        url = 'https://github.com/alumiboti5590/eye-of-providence'
+
+        licenses {
+          license {
+            name = 'The Apache License, Version 2.0'
+            url = 'https://github.com/alumiboti5590/eye-of-providence/blob/main/LICENSE.md'
+          }
+        }
+
+        developers {
+          developer {
+            id = 'dstarner'
+            name = 'Dan Starner'
+            email = 'alumiboti@danstarner.com'
+          }
+        }
+      }
+    }
+  }
+
+  repositories {
+    maven {
+      name = "GitHubPackages"
+      url = "https://maven.pkg.github.com/alumiboti5590/eye-of-providence"
+      credentials {
+        username = System.getenv("GITHUB_ACTOR")
+        password = System.getenv("GITHUB_TOKEN")
+      }
+    }
   }
 }
