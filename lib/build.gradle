@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'edu.wpi.first.GradleRIO' version '2023.+'
+    id 'edu.wpi.first.GradleRIO' version "${wpilibVersion}"
     id 'com.diffplug.spotless' version '6.+'
     id 'maven-publish'
 }
@@ -21,6 +21,9 @@ def getTagName() {
 dependencies {
   implementation wpi.java.deps.wpilib()
   implementation wpi.java.vendor.java()
+
+  // New command structure dependency is not pulled by default
+  implementation "edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:${wpilibVersion}"
 
   nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
   nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
