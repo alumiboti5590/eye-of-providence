@@ -6,7 +6,13 @@ package org.alumiboti5590.eop.utils;
  */
 public class DistanceUtil {
 
+    /** The conversion ratio of (1 inch / 1 cm) */
     public static final double INCH_TO_CM_RATIO = 2.54;
+
+    // Prevent a program from instantiating this, or javadoc from creating a reference to the default constructor
+    private DistanceUtil() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    }
 
     /**
      * Converts a measurement from inches to centimeters
