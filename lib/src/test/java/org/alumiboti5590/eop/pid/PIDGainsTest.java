@@ -1,5 +1,5 @@
 /* 2023 Written by Alumiboti FRC 5590 */
-package org.alumiboti.eop.pid;
+package org.alumiboti5590.eop.pid;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -8,8 +8,8 @@
 
 plugins {
     id 'java'
-    id 'edu.wpi.first.GradleRIO' version '2023.4.2'
-    id 'com.diffplug.spotless' version '6.12.1'
+    id 'edu.wpi.first.GradleRIO' version '2023.+'
+    id 'com.diffplug.spotless' version '6.+'
     id 'maven-publish'
 }
 
@@ -84,7 +84,7 @@ spotless {
 publishing {
   publications {
     maven(MavenPublication) {
-      artifactId = 'eop'
+      artifactId = 'eye-of-providence'
       from components.java
 
       pom {

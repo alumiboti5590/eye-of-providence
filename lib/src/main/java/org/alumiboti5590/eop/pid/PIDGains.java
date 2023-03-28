@@ -1,5 +1,5 @@
 /* 2023 Written by Alumiboti FRC 5590 */
-package org.alumiboti.eop.pid;
+package org.alumiboti5590.eop.pid;
 
 /**
  * PIDGains allows for easily storing PID values in an object that can be pulled
