@@ -49,7 +49,7 @@
     <script>
       const updateList = (data, filter = '') => {
         let htmlString = '';
-        for (let file of data.filter(filterFiles(filter)).sort(sortFiles(filter))) {
+        for (let file of data) {
           const fileName = file.path.replace('.md', '');
           const fileDisplayName = fileName.split('-').join(' ');
           htmlString += `<li><a href="${fileName}">${fileDisplayName}</a></li>`;
