@@ -47,10 +47,14 @@
       </ul>
     </div>
     <script>
+      const IGNORE_FILES = ["index.html", ".nojekyll"];
       const updateList = (data, filter = '') => {
         let htmlString = '';
         for (let file of data) {
           const fileName = file.path.replace('.md', '');
+          if (IGNORE_FILES.includes(fileName) {
+            continue;
+          }
           const fileDisplayName = fileName.split('-').join(' ');
           htmlString += `<li><a href="${fileName}">${fileDisplayName}</a></li>`;
         }
