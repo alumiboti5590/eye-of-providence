@@ -196,12 +196,17 @@ extends edu.wpi.first.wpilibj.XboxController</pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int)">XboxController</a></span>&#8203;(int&nbsp;port)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates a new XboxController listener on the provided port.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,double)">XboxController</a></span>&#8203;(int&nbsp;port,
               double&nbsp;triggerAsTriggerDeadzones)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Creates a new XboxController listener on the provided port with the provided
+ deadzone values.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -366,6 +371,13 @@ extends edu.wpi.first.wpilibj.XboxController</pre>
 <li class="blockList">
 <h4>XboxController</h4>
 <pre>public&nbsp;XboxController&#8203;(int&nbsp;port)</pre>
+<div class="block">Creates a new XboxController listener on the provided port. The port is managed by
+ the USB tab of the Driver Station, and you can 'Rescan' and 'Drag-n-Drop' reorder
+ the controllers to make them fit what is expected.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>port</code> - the port of the controller in Driver Station</dd>
+</dl>
 </li>
 </ul>
 <a id="&lt;init&gt;(int,double)">
@@ -376,6 +388,15 @@ extends edu.wpi.first.wpilibj.XboxController</pre>
 <h4>XboxController</h4>
 <pre>public&nbsp;XboxController&#8203;(int&nbsp;port,
                       double&nbsp;triggerAsTriggerDeadzones)</pre>
+<div class="block">Creates a new XboxController listener on the provided port with the provided
+ deadzone values. The port is managed by the USB tab of the Driver Station,
+ and you can 'Rescan' and 'Drag-n-Drop' reorder the controllers to make
+ them fit what is expected.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>port</code> - the port of the controller in Driver Station</dd>
+<dd><code>triggerAsTriggerDeadzones</code> - the minimum value to register a trigger as being "pressed"</dd>
+</dl>
 </li>
 </ul>
 </li>
