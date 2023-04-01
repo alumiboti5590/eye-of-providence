@@ -1,5 +1,7 @@
 # Eye of Providence
 
+[![Release](https://jitpack.io/v/alumiboti5590/eye-of-providence.svg)](https://jitpack.io/#alumiboti5590/eye-of-providence)
+
 This is a collection of reusable code pieces for the Alumiboti to use in their robot projects. The goal is to reduce the amount of code that needs to be created or copied year-over-year.
 
 ![Eye of Providence](./images/eop.png)
@@ -17,7 +19,7 @@ In the `build.gradle` of your Robot project, include the following section(s):
 ```groovy
 repositories {
     maven {
-        url = uri("https://maven.pkg.github.com/alumiboti5590/*")
+        maven { url "https://jitpack.io" }
     }
 }
 ```
@@ -28,7 +30,7 @@ repositories {
 dependencies {
     // Add this line to the dependencies block. Update the version you want to target
     // instead of the `0.0.0` which is just a filler.
-    implementation 'com.alumiboti5590:eop:0.0.0'
+    implementation 'com.alumiboti5590:eye-of-providence:0.0.0'
 
     // Other dependencies
     // ....
