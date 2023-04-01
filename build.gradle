@@ -11,7 +11,7 @@ group = 'com.alumiboti5590'
 version = getTagName();
 
 def getTagName() {
-    String ref = System.getenv('GITHUB_REF') ?: "0.0.1";
+    String ref = System.getenv('GITHUB_REF') ?: "dev";
     return ref.split('/').last();
 }
 
