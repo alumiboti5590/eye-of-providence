@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":6,"i3":6,"i4":6,"i5":6,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":6,"i4":6,"i5":6,"i6":10,"i7":10,"i8":10,"i9":10,"i10":6,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -88,14 +88,14 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -146,16 +146,69 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public abstract class <span class="typeNameLabel">TankDrive</span>
 extends edu.wpi.first.wpilibj2.command.SubsystemBase</pre>
-<div class="block">TankDriveBase abstracts out the control methods needed for a Tank Drive chassis subsystem, where
+<div class="block">TankDrive abstracts out the control methods needed for a Tank Drive chassis subsystem, where
  each side of the robot acts as it's own system, similar to a tank - hence the name.
 
- For the most part, this class just wraps the DifferentialDrive and a few other pieces nicely.</div>
+ For the most part, this class just wraps the DifferentialDrive and a few other pieces nicely.
+ You will have to use one of the more concrete implementations to configure the motors
+ and other components correctly.</div>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<table class="memberSummary">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="TankDrive.TeleopDriveType.html" title="enum in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive.TeleopDriveType</a></span></code></th>
+<td class="colLast">
+<div class="block">TeleopDriveType is an enumeration that allows for selecting the drive type during
+ the tele-operated period for a tank drive chassis.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+</section>
+<!-- =========== FIELD SUMMARY =========== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="TankDrive.TeleopDriveType.html" title="enum in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive.TeleopDriveType</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#DEFAULT_TELEOP_DRIVE_TYPE">DEFAULT_TELEOP_DRIVE_TYPE</a></span></code></th>
+<td class="colLast">
+<div class="block">The default drive type to use if one is not selected in the SmartDashboard</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section>
 <ul class="blockList">
@@ -208,47 +261,118 @@ extends edu.wpi.first.wpilibj2.command.SubsystemBase</pre>
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>edu.wpi.first.wpilibj.smartdashboard.SendableChooser&lt;<a href="TankDrive.TeleopDriveType.html" title="enum in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive.TeleopDriveType</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTeleopDriveTypeSendableChooser()">getTeleopDriveTypeSendableChooser</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the SendableChooser needed to pick the desired drive type from the SmartDashboard / Shuffleboard</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetOdometry()">resetOdometry</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Reset the encoders and gyroscope readings.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAccelerationRampRate(double)">setAccelerationRampRate</a></span>&#8203;(double&nbsp;maxAccRate)</code></th>
 <td class="colLast">
 <div class="block">Sets the ramp rate for open loop control modes.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCurrentLimit(int)">setCurrentLimit</a></span>&#8203;(int&nbsp;currentInAmps)</code></th>
 <td class="colLast">
 <div class="block">Sets the current limit in Amps.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCurvatureQuickTurnSupplier(java.util.function.BooleanSupplier)">setCurvatureQuickTurnSupplier</a></span>&#8203;(java.util.function.BooleanSupplier&nbsp;quickTurnSupplier)</code></th>
+<td class="colLast">
+<div class="block">Set if the robot should be allowed to 'quick turn' in curvature mode</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCurvatureSpeedSupplier(java.util.function.DoubleSupplier)">setCurvatureSpeedSupplier</a></span>&#8203;(java.util.function.DoubleSupplier&nbsp;speedProvider)</code></th>
+<td class="colLast">
+<div class="block">Set the speed supplier for curvature drive mode</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCurvatureSteeringSupplier(java.util.function.DoubleSupplier)">setCurvatureSteeringSupplier</a></span>&#8203;(java.util.function.DoubleSupplier&nbsp;steeringProvider)</code></th>
+<td class="colLast">
+<div class="block">Set the rotation supplier for curvature drive mode</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code><a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setInvertCurvatureSteering(boolean)">setInvertCurvatureSteering</a></span>&#8203;(boolean&nbsp;invertSteeringInput)</code></th>
+<td class="colLast">
+<div class="block">Sets if the curvature steering input should be inverted</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSidePIDGains(org.alumiboti5590.eop.pid.PIDGains)">setSidePIDGains</a></span>&#8203;(<a href="../../../pid/PIDGains.html" title="class in org.alumiboti5590.eop.pid">PIDGains</a>&nbsp;gains)</code></th>
 <td class="colLast">
 <div class="block">Set the PID controller gains for both sides of the tank drive.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code><a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSquareTeleopInputs(boolean)">setSquareTeleopInputs</a></span>&#8203;(boolean&nbsp;squareTeleopInputs)</code></th>
+<td class="colLast">
+<div class="block">If configured - which it is by default - then the speed inputs will be squared
+ meaning less sensitivity at lower levels.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code><a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTankDriveLeftSpeedSupplier(java.util.function.DoubleSupplier)">setTankDriveLeftSpeedSupplier</a></span>&#8203;(java.util.function.DoubleSupplier&nbsp;speedProvider)</code></th>
+<td class="colLast">
+<div class="block">Set the speed supplier for the left-side of the tank drive control</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code><a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTankDriveRightSpeedSupplier(java.util.function.DoubleSupplier)">setTankDriveRightSpeedSupplier</a></span>&#8203;(java.util.function.DoubleSupplier&nbsp;speedProvider)</code></th>
+<td class="colLast">
+<div class="block">Set the speed supplier for the right-side of the tank drive control</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code><a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTeleopDriveType(org.alumiboti5590.eop.subsystems.drivetrain.tank.TankDrive.TeleopDriveType)">setTeleopDriveType</a></span>&#8203;(<a href="TankDrive.TeleopDriveType.html" title="enum in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive.TeleopDriveType</a>&nbsp;driveType)</code></th>
+<td class="colLast">
+<div class="block">Set the drive type to use in Tele-operated mode by the driver</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#stop()">stop</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Stops both sides of the tank drive when called.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#tankDrive(double,double,boolean)">tankDrive</a></span>&#8203;(double&nbsp;leftSpeed,
          double&nbsp;rightSpeed,
          boolean&nbsp;squareInputs)</code></th>
 <td class="colLast">
 <div class="block">Given a speed for the left and right side, respectively, set the motor speeds as given.</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#teleopOpenDrive()">teleopOpenDrive</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The main method to control the drivetrain during teleop.</div>
 </td>
 </tr>
 </table>
@@ -282,6 +406,26 @@ extends edu.wpi.first.wpilibj2.command.SubsystemBase</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a id="DEFAULT_TELEOP_DRIVE_TYPE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>DEFAULT_TELEOP_DRIVE_TYPE</h4>
+<pre>public static final&nbsp;<a href="TankDrive.TeleopDriveType.html" title="enum in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive.TeleopDriveType</a> DEFAULT_TELEOP_DRIVE_TYPE</pre>
+<div class="block">The default drive type to use if one is not selected in the SmartDashboard</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section>
 <ul class="blockList">
@@ -308,6 +452,149 @@ extends edu.wpi.first.wpilibj2.command.SubsystemBase</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="setCurvatureSpeedSupplier(java.util.function.DoubleSupplier)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setCurvatureSpeedSupplier</h4>
+<pre class="methodSignature">public&nbsp;<a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a>&nbsp;setCurvatureSpeedSupplier&#8203;(java.util.function.DoubleSupplier&nbsp;speedProvider)</pre>
+<div class="block">Set the speed supplier for curvature drive mode</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>speedProvider</code> - a supplier that is used to control the speed in curvature mode</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The TankDrive instance to be a part of a call chain</dd>
+</dl>
+</li>
+</ul>
+<a id="setCurvatureSteeringSupplier(java.util.function.DoubleSupplier)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setCurvatureSteeringSupplier</h4>
+<pre class="methodSignature">public&nbsp;<a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a>&nbsp;setCurvatureSteeringSupplier&#8203;(java.util.function.DoubleSupplier&nbsp;steeringProvider)</pre>
+<div class="block">Set the rotation supplier for curvature drive mode</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>steeringProvider</code> - a supplier that is used to control the rotation in curvature mode</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The TankDrive instance to be a part of a call chain</dd>
+</dl>
+</li>
+</ul>
+<a id="setCurvatureQuickTurnSupplier(java.util.function.BooleanSupplier)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setCurvatureQuickTurnSupplier</h4>
+<pre class="methodSignature">public&nbsp;<a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a>&nbsp;setCurvatureQuickTurnSupplier&#8203;(java.util.function.BooleanSupplier&nbsp;quickTurnSupplier)</pre>
+<div class="block">Set if the robot should be allowed to 'quick turn' in curvature mode</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>quickTurnSupplier</code> - a supplier that is used to control 'quick turn' toggling in curvature mode</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The TankDrive instance to be a part of a call chain</dd>
+</dl>
+</li>
+</ul>
+<a id="setTankDriveLeftSpeedSupplier(java.util.function.DoubleSupplier)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setTankDriveLeftSpeedSupplier</h4>
+<pre class="methodSignature">public&nbsp;<a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a>&nbsp;setTankDriveLeftSpeedSupplier&#8203;(java.util.function.DoubleSupplier&nbsp;speedProvider)</pre>
+<div class="block">Set the speed supplier for the left-side of the tank drive control</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>speedProvider</code> - a supplier that is used for driving the left-side in tank drive</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The TankDrive instance to be a part of a call chain</dd>
+</dl>
+</li>
+</ul>
+<a id="setTankDriveRightSpeedSupplier(java.util.function.DoubleSupplier)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setTankDriveRightSpeedSupplier</h4>
+<pre class="methodSignature">public&nbsp;<a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a>&nbsp;setTankDriveRightSpeedSupplier&#8203;(java.util.function.DoubleSupplier&nbsp;speedProvider)</pre>
+<div class="block">Set the speed supplier for the right-side of the tank drive control</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>speedProvider</code> - a supplier that is used for driving the right-side in tank drive</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The TankDrive instance to be a part of a call chain</dd>
+</dl>
+</li>
+</ul>
+<a id="setInvertCurvatureSteering(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setInvertCurvatureSteering</h4>
+<pre class="methodSignature">public&nbsp;<a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a>&nbsp;setInvertCurvatureSteering&#8203;(boolean&nbsp;invertSteeringInput)</pre>
+<div class="block">Sets if the curvature steering input should be inverted</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>invertSteeringInput</code> - If the curvature steering input should be inverted</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The TankDrive instance to be a part of a call chain</dd>
+</dl>
+</li>
+</ul>
+<a id="setSquareTeleopInputs(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setSquareTeleopInputs</h4>
+<pre class="methodSignature">public&nbsp;<a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a>&nbsp;setSquareTeleopInputs&#8203;(boolean&nbsp;squareTeleopInputs)</pre>
+<div class="block">If configured - which it is by default - then the speed inputs will be squared
+ meaning less sensitivity at lower levels.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>squareTeleopInputs</code> - If the speed inputs should be squared</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The TankDrive instance to be a part of a call chain</dd>
+</dl>
+</li>
+</ul>
+<a id="setTeleopDriveType(org.alumiboti5590.eop.subsystems.drivetrain.tank.TankDrive.TeleopDriveType)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setTeleopDriveType</h4>
+<pre class="methodSignature">public&nbsp;<a href="TankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a>&nbsp;setTeleopDriveType&#8203;(<a href="TankDrive.TeleopDriveType.html" title="enum in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive.TeleopDriveType</a>&nbsp;driveType)</pre>
+<div class="block">Set the drive type to use in Tele-operated mode by the driver</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>driveType</code> - The drive type to use</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The TankDrive instance to be a part of a call chain</dd>
+</dl>
+</li>
+</ul>
+<a id="getTeleopDriveTypeSendableChooser()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getTeleopDriveTypeSendableChooser</h4>
+<pre class="methodSignature">public&nbsp;edu.wpi.first.wpilibj.smartdashboard.SendableChooser&lt;<a href="TankDrive.TeleopDriveType.html" title="enum in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive.TeleopDriveType</a>&gt;&nbsp;getTeleopDriveTypeSendableChooser()</pre>
+<div class="block">Returns the SendableChooser needed to pick the desired drive type from the SmartDashboard / Shuffleboard</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The SendableChooser that can be sent to the SmartDashboard</dd>
+</dl>
+</li>
+</ul>
 <a id="setAccelerationRampRate(double)">
 <!--   -->
 </a>
@@ -358,14 +645,16 @@ extends edu.wpi.first.wpilibj2.command.SubsystemBase</pre>
 </dl>
 </li>
 </ul>
-<a id="configureDifferentialDrive(edu.wpi.first.wpilibj.motorcontrol.MotorController,edu.wpi.first.wpilibj.motorcontrol.MotorController)">
+<a id="teleopOpenDrive()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>configureDifferentialDrive</h4>
-<pre class="methodSignature">protected&nbsp;void&nbsp;configureDifferentialDrive&#8203;(edu.wpi.first.wpilibj.motorcontrol.MotorController&nbsp;leftLeader,
-                                          edu.wpi.first.wpilibj.motorcontrol.MotorController&nbsp;rightLeader)</pre>
+<h4>teleopOpenDrive</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;teleopOpenDrive()</pre>
+<div class="block">The main method to control the drivetrain during teleop. It controls the chassis based
+ on the current teleopDriveType and it requires the correct suppliers to be defined to
+ fetch controller values.</div>
 </li>
 </ul>
 <a id="curvatureDrive(double,double,boolean,boolean)">
@@ -424,11 +713,21 @@ extends edu.wpi.first.wpilibj2.command.SubsystemBase</pre>
 <a id="resetOdometry()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>resetOdometry</h4>
 <pre class="methodSignature">public abstract&nbsp;void&nbsp;resetOdometry()</pre>
 <div class="block">Reset the encoders and gyroscope readings.</div>
+</li>
+</ul>
+<a id="configureDifferentialDrive(edu.wpi.first.wpilibj.motorcontrol.MotorController,edu.wpi.first.wpilibj.motorcontrol.MotorController)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>configureDifferentialDrive</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;configureDifferentialDrive&#8203;(edu.wpi.first.wpilibj.motorcontrol.MotorController&nbsp;leftLeader,
+                                          edu.wpi.first.wpilibj.motorcontrol.MotorController&nbsp;rightLeader)</pre>
 </li>
 </ul>
 </li>
@@ -482,14 +781,14 @@ extends edu.wpi.first.wpilibj2.command.SubsystemBase</pre>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
