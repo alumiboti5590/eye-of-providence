@@ -27,6 +27,12 @@
     catch(err) {
     }
 //-->
+var data = {"i0":2,"i1":2,"i2":4,"i3":2,"i4":4,"i5":2,"i6":2,"i7":2,"i8":1,"i9":2};
+var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"],4:["t3","Enum Summary"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 var pathtoroot = "./";
 var useModuleDirectories = true;
 loadScripts(document, 'script');</script>
@@ -99,25 +105,67 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <table class="typeSummary">
-<caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Interface Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Enum Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Class</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><a href="org/alumiboti5590/eop/subsystems/util/CANMotorConfig.html" title="class in org.alumiboti5590.eop.subsystems.util">CANMotorConfig</a></td>
+<th class="colLast" scope="row">
+<div class="block">CANMotorConfig packages together the CAN IDs of motors and if they should
+ be inverted or not.</div>
+</th>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><a href="org/alumiboti5590/eop/subsystems/util/CANSparkMaxUtil.html" title="class in org.alumiboti5590.eop.subsystems.util">CANSparkMaxUtil</a></td>
+<th class="colLast" scope="row">
+<div class="block">Sets motor usage for a Spark Max motor controller</div>
+</th>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><a href="org/alumiboti5590/eop/subsystems/util/CANSparkMaxUtil.Usage.html" title="enum in org.alumiboti5590.eop.subsystems.util">CANSparkMaxUtil.Usage</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><a href="org/alumiboti5590/eop/utils/DistanceUtil.html" title="class in org.alumiboti5590.eop.utils">DistanceUtil</a></td>
 <th class="colLast" scope="row">
 <div class="block">DistanceUtil packages a lot of useful distance conversion methods</div>
 </th>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i4" class="altColor">
+<td class="colFirst"><a href="org/alumiboti5590/eop/subsystems/util/MotorIdleMode.html" title="enum in org.alumiboti5590.eop.subsystems.util">MotorIdleMode</a></td>
+<th class="colLast" scope="row">
+<div class="block">A single interface for controlling motor idles that allows for spanning RevRobotics or CTRE libraries.</div>
+</th>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><a href="org/alumiboti5590/eop/pid/PIDGains.html" title="class in org.alumiboti5590.eop.pid">PIDGains</a></td>
 <th class="colLast" scope="row">
 <div class="block">PIDGains allows for easily storing PID values in an object that can be pulled
  out and used against PID controllers.</div>
 </th>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i6" class="altColor">
+<td class="colFirst"><a href="org/alumiboti5590/eop/subsystems/drivetrain/tank/SparkMaxBrushlessTankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">SparkMaxBrushlessTankDrive</a></td>
+<th class="colLast" scope="row">
+<div class="block">A TankDrive implementation using Spark Max motor controllers to control <strong>brushless</strong> motors.</div>
+</th>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><a href="org/alumiboti5590/eop/subsystems/drivetrain/tank/TalonSRXBrushedTankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TalonSRXBrushedTankDrive</a></td>
+<th class="colLast" scope="row">
+<div class="block">A TankDrive implementation using Talon SRX motor controllers to control <strong>brushed</strong> motors.</div>
+</th>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><a href="org/alumiboti5590/eop/subsystems/drivetrain/tank/TankDrive.html" title="interface in org.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a></td>
+<th class="colLast" scope="row">
+<div class="block">TankDriveBase abstracts out the control methods needed for a Tank Drive chassis subsystem, where
+ each side of the robot acts as it's own system, similar to a tank - hence the name.</div>
+</th>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><a href="org/alumiboti5590/eop/controllers/XboxController.html" title="class in org.alumiboti5590.eop.controllers">XboxController</a></td>
 <th class="colLast" scope="row">
 <div class="block">A subclass of the WPILib XboxController containing useful additions such as deadzone management
