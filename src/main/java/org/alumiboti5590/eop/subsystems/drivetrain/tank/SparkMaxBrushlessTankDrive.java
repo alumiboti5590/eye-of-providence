@@ -6,6 +6,8 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import org.alumiboti5590.eop.pid.PIDGains;
 import org.alumiboti5590.eop.subsystems.util.CANMotorConfig;
+import org.alumiboti5590.eop.subsystems.util.CANSparkMaxUtil;
+import org.alumiboti5590.eop.subsystems.util.CANSparkMaxUtil.Usage;
 
 /**
  * A TankDrive implementation using Spark Max motor controllers to control <strong>brushless</strong> motors.
@@ -13,6 +15,27 @@ import org.alumiboti5590.eop.subsystems.util.CANMotorConfig;
  * brushless motors <i>only</i>.
  */
 public class SparkMaxBrushlessTankDrive implements TankDrive {
+
+    // ~~~~~~~~~~~~~~~~~~~~
+    // CONSTANTS & DEFAULTS
+    // ~~~~~~~~~~~~~~~~~~~~
+
+    /**
+     * The default ramp rate, meaning the motors will take this long (in seconds) to
+     * accelerate to full speed to prevent damage to the motor or subsystems. In drivetrains,
+     * this also helps to prevent flip-overs from sudden acceleration.
+     */
+    public static final double DEFAULT_RAMP_RATE = .3;
+
+    /**
+     * Limit the motors to the following AMPS to prevent brownouts, trips, or too much
+     * power being drawn when it really isn't needed. This is a nice safety feature.
+     */
+    public static final int DEFAULT_CURRENT_LIMIT = 40;
+
+    // ~~~~~~~~~~~~~~~~~~
+    // INSTANCE VARIABLES
+    // ~~~~~~~~~~~~~~~~~~
 
     private CANSparkMax leftLeader, rightLeader;
     private CANSparkMax leftFollower, rightFollower;
@@ -38,6 +61,10 @@ public class SparkMaxBrushlessTankDrive implements TankDrive {
         this.leftFollower = leftFollowerConfig.toSparkMaxBrushless();
         this.rightFollower = rightFollowerConfig.toSparkMaxBrushless();
 
+        this.setAccelerationRampRate(DEFAULT_RAMP_RATE);
+        this.setCurrentLimit(DEFAULT_CURRENT_LIMIT);
+        this.setDrivetrainUsage(Usage.kMinimal);
+
         // Configure the followers to follow their correct leader
         this.leftFollower.follow(this.leftLeader);
         this.rightFollower.follow(this.rightLeader);
@@ -48,6 +75,10 @@ public class SparkMaxBrushlessTankDrive implements TankDrive {
 
         this.tankDriveHelper = new TankDriveHelper(leftLeader, rightLeader);
     }
+
+    // ~~~~~~~~
+    // MOVEMENT
+    // ~~~~~~~~
 
     @Override
     public void curvatureDrive(double xSpeed, double zRotation, boolean allowTurnInPlace, boolean squareInputs) {
@@ -64,9 +95,24 @@ public class SparkMaxBrushlessTankDrive implements TankDrive {
         this.tankDriveHelper.stop();
     }
 
+    // ~~~~~~~~~~~~~
+    // CONFIGURATION
+    // ~~~~~~~~~~~~~
+
     @Override
-    public void resetOdometry() {
-        this.resetEncoders();
+    public void setAccelerationRampRate(double maxAccRate) {
+        this.leftLeader.setOpenLoopRampRate(maxAccRate);
+        this.leftFollower.setOpenLoopRampRate(maxAccRate);
+        this.rightLeader.setOpenLoopRampRate(maxAccRate);
+        this.rightFollower.setOpenLoopRampRate(maxAccRate);
+    }
+
+    @Override
+    public void setCurrentLimit(int currentInAmps) {
+        this.leftLeader.setSmartCurrentLimit(currentInAmps);
+        this.leftFollower.setSmartCurrentLimit(currentInAmps);
+        this.rightLeader.setSmartCurrentLimit(currentInAmps);
+        this.rightFollower.setSmartCurrentLimit(currentInAmps);
     }
 
     @Override
@@ -87,6 +133,29 @@ public class SparkMaxBrushlessTankDrive implements TankDrive {
             pidController.setIZone(gains.kIzone);
             pidController.setOutputRange(gains.kPeakMinOutput, gains.kPeakMaxOutput);
         }
+    }
+
+    /**
+     * The following allows us to save precious time in our 20ms robot loop by not
+     * evaluating the Spark Max values any more than we really need to. It's recommended
+     * to set this (although the code might do it automatically) before switching up the
+     * drive mode between position-based, velocity-based, or open.
+     * @param desiredUsage the short-term desired usage for the motor
+     */
+    public void setDrivetrainUsage(Usage desiredUsage) {
+        CANSparkMaxUtil.setCANSparkMaxBusUsage(leftLeader, desiredUsage, true);
+        CANSparkMaxUtil.setCANSparkMaxBusUsage(rightLeader, desiredUsage, true);
+        CANSparkMaxUtil.setCANSparkMaxBusUsage(leftLeader, Usage.kMinimal);
+        CANSparkMaxUtil.setCANSparkMaxBusUsage(rightLeader, Usage.kMinimal);
+    }
+
+    // ~~~~~~~~
+    // ODOMETRY
+    // ~~~~~~~~
+
+    @Override
+    public void resetOdometry() {
+        this.resetEncoders();
     }
 
     private void resetEncoders() {

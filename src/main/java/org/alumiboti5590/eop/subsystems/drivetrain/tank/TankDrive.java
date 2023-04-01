@@ -16,6 +16,25 @@ public interface TankDrive {
     // ~~~~~~~~~~~~~
 
     /**
+     * Sets the ramp rate for open loop control modes.
+     *
+     * <p>This is the maximum rate at which the motor controller's output is allowed to change.
+     *
+     * @param maxAccRate Time in seconds to go from 0 to full throttle.
+     */
+    public void setAccelerationRampRate(double maxAccRate);
+
+    /**
+     * Sets the current limit in Amps.
+     *
+     * <p>The motor controller will reduce the controller voltage output to avoid surpassing this
+     * limit. This limit is enabled by default and used for brushless only. This limit is highly
+     * recommended when brushless motors, but it also helps to avoid brownouts in any situation.
+     * @param currentInAmps The current limit in Amps.
+     */
+    public void setCurrentLimit(int currentInAmps);
+
+    /**
      * Set the PID controller gains for both sides of the tank drive. Note that the actual effect
      * will be determined by the motors used (Neos + Spark Max's have a lot more control because of
      * their built-in encoder) but it tries to be fairly equal enough for a drivetrain to work.

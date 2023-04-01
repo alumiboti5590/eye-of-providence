@@ -14,6 +14,27 @@ import org.alumiboti5590.eop.subsystems.util.CANMotorConfig;
  */
 public class TalonSRXBrushedTankDrive implements TankDrive {
 
+    // ~~~~~~~~~~~~~~~~~~~~
+    // CONSTANTS & DEFAULTS
+    // ~~~~~~~~~~~~~~~~~~~~
+
+    /**
+     * The default ramp rate, meaning the motors will take this long (in seconds) to
+     * accelerate to full speed to prevent damage to the motor or subsystems. In drivetrains,
+     * this also helps to prevent flip-overs from sudden acceleration.
+     */
+    public static final double DEFAULT_RAMP_RATE = .3;
+
+    /**
+     * Limit the motors to the following AMPS to prevent brownouts, trips, or too much
+     * power being drawn when it really isn't needed. This is a nice safety feature.
+     */
+    public static final int DEFAULT_CURRENT_LIMIT = 30;
+
+    // ~~~~~~~~~~~~~~~~~~
+    // INSTANCE VARIABLES
+    // ~~~~~~~~~~~~~~~~~~
+
     private WPI_TalonSRX leftLeader, rightLeader;
     private WPI_TalonSRX leftFollower, rightFollower;
     private Encoder leftLeaderEncoder, rightLeaderEncoder;
@@ -46,6 +67,9 @@ public class TalonSRXBrushedTankDrive implements TankDrive {
         this.leftFollower.follow(this.leftLeader);
         this.rightFollower.follow(this.rightLeader);
 
+        this.setAccelerationRampRate(DEFAULT_RAMP_RATE);
+        this.setCurrentLimit(DEFAULT_CURRENT_LIMIT);
+
         // Configure encoders
         if (leftEncoder != null) {
             this.leftLeaderEncoder = leftEncoder;
@@ -56,6 +80,10 @@ public class TalonSRXBrushedTankDrive implements TankDrive {
 
         this.tankDriveHelper = new TankDriveHelper(leftLeader, rightLeader);
     }
+
+    // ~~~~~~~~
+    // MOVEMENT
+    // ~~~~~~~~
 
     @Override
     public void curvatureDrive(double xSpeed, double zRotation, boolean allowTurnInPlace, boolean squareInputs) {
@@ -72,6 +100,34 @@ public class TalonSRXBrushedTankDrive implements TankDrive {
         this.tankDriveHelper.stop();
     }
 
+    // ~~~~~~~~~~~~~
+    // CONFIGURATION
+    // ~~~~~~~~~~~~~
+
+    public void setAccelerationRampRate(double maxAccRate) {
+        this.leftLeader.configOpenloopRamp(maxAccRate);
+        this.rightLeader.configOpenloopRamp(maxAccRate);
+        this.leftFollower.configOpenloopRamp(maxAccRate);
+        this.rightFollower.configOpenloopRamp(maxAccRate);
+    }
+
+    public void setCurrentLimit(int currentInAmps) {
+        this.leftLeader.configPeakCurrentLimit(currentInAmps);
+        this.rightLeader.configPeakCurrentLimit(currentInAmps);
+        this.leftFollower.configPeakCurrentLimit(currentInAmps);
+        this.rightFollower.configPeakCurrentLimit(currentInAmps);
+    }
+
+    @Override
+    public void setSidePIDGains(PIDGains gains) {
+        this.leftPIDController = new PIDController(gains.kP, gains.kI, gains.kD);
+        this.rightPIDController = new PIDController(gains.kP, gains.kI, gains.kD);
+    }
+
+    // ~~~~~~~~
+    // ODOMETRY
+    // ~~~~~~~~
+
     @Override
     public void resetOdometry() {
         this.resetEncoders();
@@ -80,11 +136,5 @@ public class TalonSRXBrushedTankDrive implements TankDrive {
     private void resetEncoders() {
         this.leftLeaderEncoder.reset();
         this.rightLeaderEncoder.reset();
-    }
-
-    @Override
-    public void setSidePIDGains(PIDGains gains) {
-        this.leftPIDController = new PIDController(gains.kP, gains.kI, gains.kD);
-        this.rightPIDController = new PIDController(gains.kP, gains.kI, gains.kD);
     }
 }
