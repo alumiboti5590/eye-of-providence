@@ -14,31 +14,47 @@ group = 'com.alumiboti5590'
 version = getTagName();
 
 def getTagName() {
-    String ref = System.getenv('GITHUB_REF') ?: "0.0.0";
+    String ref = System.getenv('GITHUB_REF') ?: "0.0.1-SNAPSHOT";
     return ref.split('/').last();
 }
 
-javadoc {
-    if(JavaVersion.current().isJava9Compatible()) {
-        options.addBooleanOption('html5', true)
-    }
+java {
+  withSourcesJar()
+  withJavadocJar()
 }
 
-java {
-  withJavadocJar()
-  withSourcesJar()
+task sourceJar(type: Jar) {
+  from sourceSets.main.allJava
+  archiveClassifier = "sources"
+}
+
+repositories {
+  maven {
+    url "https://maven.revrobotics.com/"
+  }
+  maven {
+    url "https://maven.ctr-electronics.com/release/"
+  }
 }
 
 
 // Defining my dependencies. In this case, WPILib (+ friends), and vendor libraries.
 // Also defines JUnit 5.
 dependencies {
+  // Core WPILib dependencies
   implementation wpi.java.deps.wpilib()
   implementation wpi.java.vendor.java()
-
   // New command structure dependency is not pulled by default
   implementation "edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:${wpilibVersion}"
 
+  // RevRobotics dependency (Spark Max, Neos, etc...)
+  implementation "com.revrobotics.frc:REVLib-java:${revRoboticsVersion}"
+
+  // CTRE dependency (Talon SRX, etc...)
+  implementation "com.ctre.phoenix:api-java:${ctreVersion}"
+  implementation "com.ctre.phoenix:wpiapi-java:${ctreVersion}"
+
+  // Other WPILib dependencies
   nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
   nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
   simulationDebug wpi.sim.enableDebug()
@@ -140,8 +156,8 @@ nexusPublishing {
     sonatype {
       nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"))
       snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
-      username = System.getenv("OSSRH_USERNAME")
-      password = System.getenv("OSSRH_PASSWORD")
+      username = "dstarner"
+      password = "c8Sm00/btYZWvlwtvI6CdY8jFwTiaLcjRsZXB/hzqhgA"
     }
   }
 }
