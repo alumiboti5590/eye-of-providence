@@ -26,6 +26,7 @@ task sourceJar(type: Jar) {
 }
 
 repositories {
+  mavenCentral()
   maven {
     url "https://frcmaven.wpi.edu/artifactory/release/"
   }
