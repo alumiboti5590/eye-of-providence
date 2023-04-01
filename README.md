@@ -76,4 +76,4 @@ You can run the following command to generate Javadocs for the current code.
 ./gradlew javadocs
 ```
 
-And then, **in VSCode**, navigate to the `lib/build/docs/javadocs` directory in the directory tree and find the `index.html` file under it. Right-click on the `index.html` file and click `Copy Path` - **not** the relative path. Open your browser and Right-Click and Paste (or use `Ctrl-V`) and open the file path to see the documentation.
+And then, **in VSCode**, navigate to the `build/docs/javadocs` directory in the directory tree and find the `index.html` file under it. Right-click on the `index.html` file and click `Copy Path` - **not** the relative path. Open your browser and Right-Click and Paste (or use `Ctrl-V`) and open the file path to see the documentation.

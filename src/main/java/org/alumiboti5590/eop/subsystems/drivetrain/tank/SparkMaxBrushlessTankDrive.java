@@ -14,7 +14,7 @@ import org.alumiboti5590.eop.subsystems.util.CANSparkMaxUtil.Usage;
  * Do not use this under any circumstances with brushed motors; this is designed for Neos, Neo 550s, and other
  * brushless motors <i>only</i>.
  */
-public class SparkMaxBrushlessTankDrive implements TankDrive {
+public class SparkMaxBrushlessTankDrive extends TankDrive {
 
     // ~~~~~~~~~~~~~~~~~~~~
     // CONSTANTS & DEFAULTS
@@ -42,8 +42,6 @@ public class SparkMaxBrushlessTankDrive implements TankDrive {
     private RelativeEncoder leftLeaderEncoder, rightLeaderEncoder;
     private SparkMaxPIDController leftPIDController, rightPIDController;
 
-    private TankDriveHelper tankDriveHelper;
-
     /**
      * Creates a new drivetrain from the provided motor and optionally provided encoders
      * @param leftLeaderConfig configuration for the left leader motor controller
@@ -60,6 +58,7 @@ public class SparkMaxBrushlessTankDrive implements TankDrive {
         this.rightLeader = rightLeaderConfig.toSparkMaxBrushless();
         this.leftFollower = leftFollowerConfig.toSparkMaxBrushless();
         this.rightFollower = rightFollowerConfig.toSparkMaxBrushless();
+        this.configureDifferentialDrive(leftLeader, rightLeader);
 
         this.setAccelerationRampRate(DEFAULT_RAMP_RATE);
         this.setCurrentLimit(DEFAULT_CURRENT_LIMIT);
@@ -72,27 +71,6 @@ public class SparkMaxBrushlessTankDrive implements TankDrive {
         // Configure encoders
         this.leftLeaderEncoder = this.leftLeader.getEncoder();
         this.rightLeaderEncoder = this.rightLeader.getEncoder();
-
-        this.tankDriveHelper = new TankDriveHelper(leftLeader, rightLeader);
-    }
-
-    // ~~~~~~~~
-    // MOVEMENT
-    // ~~~~~~~~
-
-    @Override
-    public void curvatureDrive(double xSpeed, double zRotation, boolean allowTurnInPlace, boolean squareInputs) {
-        this.tankDriveHelper.curvatureDrive(xSpeed, zRotation, allowTurnInPlace, squareInputs);
-    }
-
-    @Override
-    public void tankDrive(double leftSpeed, double rightSpeed, boolean squareInputs) {
-        this.tankDriveHelper.tankDrive(leftSpeed, rightSpeed, squareInputs);
-    }
-
-    @Override
-    public void stop() {
-        this.tankDriveHelper.stop();
     }
 
     // ~~~~~~~~~~~~~

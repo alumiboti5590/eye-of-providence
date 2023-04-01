@@ -12,7 +12,7 @@ import org.alumiboti5590.eop.subsystems.util.CANMotorConfig;
  * Do not use this under any circumstances with brushless motors; this is designed for CIM, 775, Redline and other
  * brushed motors <i>only</i>.
  */
-public class TalonSRXBrushedTankDrive implements TankDrive {
+public class TalonSRXBrushedTankDrive extends TankDrive {
 
     // ~~~~~~~~~~~~~~~~~~~~
     // CONSTANTS & DEFAULTS
@@ -40,8 +40,6 @@ public class TalonSRXBrushedTankDrive implements TankDrive {
     private Encoder leftLeaderEncoder, rightLeaderEncoder;
     PIDController leftPIDController, rightPIDController;
 
-    private TankDriveHelper tankDriveHelper;
-
     /**
      * Creates a new drivetrain from the provided motor and optionally provided encoders
      * @param leftLeaderConfig configuration for the left leader motor controller
@@ -62,6 +60,7 @@ public class TalonSRXBrushedTankDrive implements TankDrive {
         this.rightLeader = rightLeaderConfig.toWPITalonSRX();
         this.leftFollower = leftFollowerConfig.toWPITalonSRX();
         this.rightFollower = rightFollowerConfig.toWPITalonSRX();
+        this.configureDifferentialDrive(leftLeader, rightLeader);
 
         // Configure the followers to follow their correct leader
         this.leftFollower.follow(this.leftLeader);
@@ -77,27 +76,6 @@ public class TalonSRXBrushedTankDrive implements TankDrive {
         if (rightEncoder != null) {
             this.rightLeaderEncoder = rightEncoder;
         }
-
-        this.tankDriveHelper = new TankDriveHelper(leftLeader, rightLeader);
-    }
-
-    // ~~~~~~~~
-    // MOVEMENT
-    // ~~~~~~~~
-
-    @Override
-    public void curvatureDrive(double xSpeed, double zRotation, boolean allowTurnInPlace, boolean squareInputs) {
-        this.tankDriveHelper.curvatureDrive(xSpeed, zRotation, allowTurnInPlace, squareInputs);
-    }
-
-    @Override
-    public void tankDrive(double leftSpeed, double rightSpeed, boolean squareInputs) {
-        this.tankDriveHelper.tankDrive(leftSpeed, rightSpeed, squareInputs);
-    }
-
-    @Override
-    public void stop() {
-        this.tankDriveHelper.stop();
     }
 
     // ~~~~~~~~~~~~~
