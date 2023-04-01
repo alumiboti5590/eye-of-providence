@@ -27,8 +27,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var data = {"i0":10,"i1":10,"i2":6,"i3":6,"i4":6,"i5":6,"i6":10,"i7":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -90,13 +90,13 @@ loadScripts(document, 'script');</script>
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
@@ -116,18 +116,36 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">org.alumiboti5590.eop.subsystems.drivetrain.tank</a></div>
-<h2 title="Interface TankDrive" class="title">Interface TankDrive</h2>
+<h2 title="Class TankDrive" class="title">Class TankDrive&lt;T&gt;</h2>
 </div>
 <div class="contentContainer">
+<ul class="inheritance">
+<li>java.lang.Object</li>
+<li>
+<ul class="inheritance">
+<li>edu.wpi.first.wpilibj2.command.SubsystemBase</li>
+<li>
+<ul class="inheritance">
+<li>org.alumiboti5590.eop.subsystems.drivetrain.tank.TankDrive&lt;T&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
 <dl>
-<dt>All Known Implementing Classes:</dt>
+<dt>All Implemented Interfaces:</dt>
+<dd><code>edu.wpi.first.util.sendable.Sendable</code>, <code>edu.wpi.first.wpilibj2.command.Subsystem</code></dd>
+</dl>
+<dl>
+<dt>Direct Known Subclasses:</dt>
 <dd><code><a href="SparkMaxBrushlessTankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">SparkMaxBrushlessTankDrive</a></code>, <code><a href="TalonSRXBrushedTankDrive.html" title="class in org.alumiboti5590.eop.subsystems.drivetrain.tank">TalonSRXBrushedTankDrive</a></code></dd>
 </dl>
 <hr>
-<pre>public interface <span class="typeNameLabel">TankDrive</span></pre>
+<pre>public abstract class <span class="typeNameLabel">TankDrive&lt;T&gt;</span>
+extends edu.wpi.first.wpilibj2.command.SubsystemBase</pre>
 <div class="block">TankDriveBase abstracts out the control methods needed for a Tank Drive chassis subsystem, where
  each side of the robot acts as it's own system, similar to a tank - hence the name.
 
@@ -138,6 +156,27 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="constructor.summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="memberSummary">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Constructor</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">TankDrive</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+</section>
 <!-- ========== METHOD SUMMARY =========== -->
 <section>
 <ul class="blockList">
@@ -146,13 +185,19 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#configureDifferentialDrive(edu.wpi.first.wpilibj.motorcontrol.MotorController,edu.wpi.first.wpilibj.motorcontrol.MotorController)">configureDifferentialDrive</a></span>&#8203;(edu.wpi.first.wpilibj.motorcontrol.MotorController&nbsp;leftLeader,
+                          edu.wpi.first.wpilibj.motorcontrol.MotorController&nbsp;rightLeader)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#curvatureDrive(double,double,boolean,boolean)">curvatureDrive</a></span>&#8203;(double&nbsp;xSpeed,
               double&nbsp;zRotation,
@@ -162,42 +207,42 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Given a movement speed and a rotational speed, move the robot.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetOdometry()">resetOdometry</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Reset the encoders and gyroscope readings.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>void</code></td>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAccelerationRampRate(double)">setAccelerationRampRate</a></span>&#8203;(double&nbsp;maxAccRate)</code></th>
 <td class="colLast">
 <div class="block">Sets the ramp rate for open loop control modes.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>void</code></td>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCurrentLimit(int)">setCurrentLimit</a></span>&#8203;(int&nbsp;currentInAmps)</code></th>
 <td class="colLast">
 <div class="block">Sets the current limit in Amps.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>void</code></td>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSidePIDGains(org.alumiboti5590.eop.pid.PIDGains)">setSidePIDGains</a></span>&#8203;(<a href="../../../pid/PIDGains.html" title="class in org.alumiboti5590.eop.pid">PIDGains</a>&nbsp;gains)</code></th>
 <td class="colLast">
 <div class="block">Set the PID controller gains for both sides of the tank drive.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#stop()">stop</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Stops both sides of the tank drive when called.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#tankDrive(double,double,boolean)">tankDrive</a></span>&#8203;(double&nbsp;leftSpeed,
          double&nbsp;rightSpeed,
@@ -207,6 +252,27 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.edu.wpi.first.wpilibj2.command.SubsystemBase">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;edu.wpi.first.wpilibj2.command.SubsystemBase</h3>
+<code>addChild, getName, getSubsystem, initSendable, setName, setSubsystem</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.edu.wpi.first.wpilibj2.command.Subsystem">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;edu.wpi.first.wpilibj2.command.Subsystem</h3>
+<code>getCurrentCommand, getDefaultCommand, periodic, register, removeDefaultCommand, run, runEnd, runOnce, setDefaultCommand, simulationPeriodic, startEnd</code></li>
+</ul>
 </li>
 </ul>
 </section>
@@ -216,6 +282,25 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="constructor.detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a id="&lt;init&gt;()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>TankDrive</h4>
+<pre>public&nbsp;TankDrive()</pre>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ============ METHOD DETAIL ========== -->
 <section>
 <ul class="blockList">
@@ -229,7 +314,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>setAccelerationRampRate</h4>
-<pre class="methodSignature">void&nbsp;setAccelerationRampRate&#8203;(double&nbsp;maxAccRate)</pre>
+<pre class="methodSignature">public abstract&nbsp;void&nbsp;setAccelerationRampRate&#8203;(double&nbsp;maxAccRate)</pre>
 <div class="block">Sets the ramp rate for open loop control modes.
 
  <p>This is the maximum rate at which the motor controller's output is allowed to change.</div>
@@ -245,7 +330,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>setCurrentLimit</h4>
-<pre class="methodSignature">void&nbsp;setCurrentLimit&#8203;(int&nbsp;currentInAmps)</pre>
+<pre class="methodSignature">public abstract&nbsp;void&nbsp;setCurrentLimit&#8203;(int&nbsp;currentInAmps)</pre>
 <div class="block">Sets the current limit in Amps.
 
  <p>The motor controller will reduce the controller voltage output to avoid surpassing this
@@ -263,7 +348,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>setSidePIDGains</h4>
-<pre class="methodSignature">void&nbsp;setSidePIDGains&#8203;(<a href="../../../pid/PIDGains.html" title="class in org.alumiboti5590.eop.pid">PIDGains</a>&nbsp;gains)</pre>
+<pre class="methodSignature">public abstract&nbsp;void&nbsp;setSidePIDGains&#8203;(<a href="../../../pid/PIDGains.html" title="class in org.alumiboti5590.eop.pid">PIDGains</a>&nbsp;gains)</pre>
 <div class="block">Set the PID controller gains for both sides of the tank drive. Note that the actual effect
  will be determined by the motors used (Neos + Spark Max's have a lot more control because of
  their built-in encoder) but it tries to be fairly equal enough for a drivetrain to work.</div>
@@ -273,16 +358,26 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 </li>
 </ul>
+<a id="configureDifferentialDrive(edu.wpi.first.wpilibj.motorcontrol.MotorController,edu.wpi.first.wpilibj.motorcontrol.MotorController)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>configureDifferentialDrive</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;configureDifferentialDrive&#8203;(edu.wpi.first.wpilibj.motorcontrol.MotorController&nbsp;leftLeader,
+                                          edu.wpi.first.wpilibj.motorcontrol.MotorController&nbsp;rightLeader)</pre>
+</li>
+</ul>
 <a id="curvatureDrive(double,double,boolean,boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>curvatureDrive</h4>
-<pre class="methodSignature">void&nbsp;curvatureDrive&#8203;(double&nbsp;xSpeed,
-                    double&nbsp;zRotation,
-                    boolean&nbsp;allowTurnInPlace,
-                    boolean&nbsp;squareInputs)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;curvatureDrive&#8203;(double&nbsp;xSpeed,
+                           double&nbsp;zRotation,
+                           boolean&nbsp;allowTurnInPlace,
+                           boolean&nbsp;squareInputs)</pre>
 <div class="block">Given a movement speed and a rotational speed, move the robot. The rotation argument controls
  the curvature of the robot's path rather than its rate of heading change. This makes the
  robot more controllable at high speeds.</div>
@@ -302,9 +397,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>tankDrive</h4>
-<pre class="methodSignature">void&nbsp;tankDrive&#8203;(double&nbsp;leftSpeed,
-               double&nbsp;rightSpeed,
-               boolean&nbsp;squareInputs)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;tankDrive&#8203;(double&nbsp;leftSpeed,
+                      double&nbsp;rightSpeed,
+                      boolean&nbsp;squareInputs)</pre>
 <div class="block">Given a speed for the left and right side, respectively, set the motor speeds as given. This is
  the more difficult control mode for a drivetrain.</div>
 <dl>
@@ -322,7 +417,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>stop</h4>
-<pre class="methodSignature">void&nbsp;stop()</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;stop()</pre>
 <div class="block">Stops both sides of the tank drive when called.</div>
 </li>
 </ul>
@@ -332,7 +427,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockListLast">
 <li class="blockList">
 <h4>resetOdometry</h4>
-<pre class="methodSignature">void&nbsp;resetOdometry()</pre>
+<pre class="methodSignature">public abstract&nbsp;void&nbsp;resetOdometry()</pre>
 <div class="block">Reset the encoders and gyroscope readings.</div>
 </li>
 </ul>
@@ -389,13 +484,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
