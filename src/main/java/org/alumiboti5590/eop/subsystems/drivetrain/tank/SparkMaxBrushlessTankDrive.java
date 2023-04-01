@@ -4,10 +4,10 @@ package org.alumiboti5590.eop.subsystems.drivetrain.tank;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
+import org.alumiboti5590.eop.components.motors.util.CANMotorConfig;
+import org.alumiboti5590.eop.components.motors.util.CANSparkMaxUtil;
+import org.alumiboti5590.eop.components.motors.util.CANSparkMaxUtil.Usage;
 import org.alumiboti5590.eop.pid.PIDGains;
-import org.alumiboti5590.eop.subsystems.util.CANMotorConfig;
-import org.alumiboti5590.eop.subsystems.util.CANSparkMaxUtil;
-import org.alumiboti5590.eop.subsystems.util.CANSparkMaxUtil.Usage;
 
 /**
  * A TankDrive implementation using Spark Max motor controllers to control <strong>brushless</strong> motors.

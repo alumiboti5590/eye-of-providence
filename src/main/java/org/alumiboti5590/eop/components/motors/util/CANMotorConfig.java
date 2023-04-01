@@ -1,5 +1,5 @@
 /* 2023 Written by Alumiboti FRC 5590 */
-package org.alumiboti5590.eop.subsystems.util;
+package org.alumiboti5590.eop.components.motors.util;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;

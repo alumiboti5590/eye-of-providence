@@ -4,8 +4,8 @@ package org.alumiboti5590.eop.subsystems.drivetrain.tank;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Encoder;
+import org.alumiboti5590.eop.components.motors.util.CANMotorConfig;
 import org.alumiboti5590.eop.pid.PIDGains;
-import org.alumiboti5590.eop.subsystems.util.CANMotorConfig;
 
 /**
  * A TankDrive implementation using Talon SRX motor controllers to control <strong>brushed</strong> motors.

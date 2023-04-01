@@ -19,7 +19,7 @@ In the `build.gradle` of your Robot project, include the following section(s):
 ```groovy
 repositories {
     maven {
-        maven { url "https://jitpack.io" }
+        url "https://jitpack.io"
     }
 }
 ```
