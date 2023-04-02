@@ -1,4 +1,5 @@
-org.alumiboti5590.eop.components.motors.util
-org.alumiboti5590.eop.controllers
-org.alumiboti5590.eop.pid
-org.alumiboti5590.eop.subsystems.drivetrain.tank
+com.alumiboti5590.eop.components.motors.util
+com.alumiboti5590.eop.controllers
+com.alumiboti5590.eop.pid
+com.alumiboti5590.eop.properties
+com.alumiboti5590.eop.subsystems.drivetrain.tank
