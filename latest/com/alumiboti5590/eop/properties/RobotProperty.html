@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":10,"i9":10,"i10":9};
+var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":10,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":10,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -158,9 +158,25 @@ extends java.util.Properties</pre>
  provided by WPILib.
 
  <p>Access to properties should be done via the <code>getAs...</code> static methods, such as
- <code>getAsString()</code>, <code>getAsInt()</code>, <code>getAsDouble()</code>, and <code>getAsBoolean()</code>.
+ <code>getString()</code>, <code>getInt()</code>, <code>getDouble()</code>, and <code>getBoolean()</code>.
  Each also accepts a second parameter representing the default value if the property
- key is not defined.</div>
+ key is not defined.
+
+ <p>Examples include:
+
+ <pre>
+   String val = RobotProperty.getString("my_property");
+   int motorId = RobotProperty.getInt("arm_motor_id");
+   boolean isInverted = RobotProperty.getInt("is_inverted");
+   double pValue = RobotProperty.getDouble("pid_p");
+
+   // You can also use enumerations, or anything with a 'toString()' value to resolve
+   public enum KnownProperties {
+     drivetrain_left_motor_id;
+   }
+
+   int motorId = RobotProperty.getInt(KnownProperties.drivetrain_left_motor_id);
+ </pre></div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="https://docs.wpilib.org/en/stable/docs/software/advanced-gradlerio/deploy-git-data.html#using-deployed-files">WPILib Deployed Files</a>, 
@@ -205,83 +221,151 @@ extends java.util.Properties</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAsBoolean(java.lang.String)">getAsBoolean</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBoolean(java.lang.Object)">getBoolean</a></span>&#8203;(java.lang.Object&nbsp;keyObj)</code></th>
 <td class="colLast">
-<div class="block">Returns the property as a boolean.</div>
+<div class="block">Same as <a href="#getBoolean(java.lang.String)"><code>getBoolean(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAsBoolean(java.lang.String,boolean)">getAsBoolean</a></span>&#8203;(java.lang.String&nbsp;key,
-            boolean&nbsp;defaultValue)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBoolean(java.lang.Object,java.lang.String)">getBoolean</a></span>&#8203;(java.lang.Object&nbsp;keyObj,
+          java.lang.String&nbsp;defaultValue)</code></th>
 <td class="colLast">
-<div class="block">Same as <a href="#getAsBoolean(java.lang.String)"><code>getAsBoolean(java.lang.String)</code></a> but takes a default value if the property is not defined,
+<div class="block">Same as <a href="#getBoolean(java.lang.Object)"><code>getBoolean(java.lang.Object)</code></a> but takes a default value if the property is not defined,
  instead of raising an exception.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>static double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAsDouble(java.lang.String)">getAsDouble</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
+<td class="colFirst"><code>static boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBoolean(java.lang.String)">getBoolean</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
 <td class="colLast">
-<div class="block">Returns the property as a double.</div>
+<div class="block">Returns the property as a boolean.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>static double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAsDouble(java.lang.String,double)">getAsDouble</a></span>&#8203;(java.lang.String&nbsp;key,
-           double&nbsp;defaultValue)</code></th>
+<td class="colFirst"><code>static boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBoolean(java.lang.String,boolean)">getBoolean</a></span>&#8203;(java.lang.String&nbsp;key,
+          boolean&nbsp;defaultValue)</code></th>
 <td class="colLast">
-<div class="block">Same as <a href="#getAsDouble(java.lang.String)"><code>getAsDouble(java.lang.String)</code></a> but takes a default value if the property is not defined,
+<div class="block">Same as <a href="#getBoolean(java.lang.String)"><code>getBoolean(java.lang.String)</code></a> but takes a default value if the property is not defined,
  instead of raising an exception.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>static int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAsInt(java.lang.String)">getAsInt</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
-<td class="colLast">
-<div class="block">Returns the property as an integer.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>static int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAsInt(java.lang.String,int)">getAsInt</a></span>&#8203;(java.lang.String&nbsp;key,
-        int&nbsp;defaultValue)</code></th>
-<td class="colLast">
-<div class="block">Same as <a href="#getAsInt(java.lang.String)"><code>getAsInt(java.lang.String)</code></a> but takes a default value if the property is not defined,
- instead of raising an exception.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAsString(java.lang.String)">getAsString</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
-<td class="colLast">
-<div class="block">Returns the property as a string.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAsString(java.lang.String,java.lang.String)">getAsString</a></span>&#8203;(java.lang.String&nbsp;key,
-           java.lang.String&nbsp;defaultValue)</code></th>
-<td class="colLast">
-<div class="block">Same as <a href="#getAsString(java.lang.String)"><code>getAsString(java.lang.String)</code></a> but takes a default value if the property is not defined,
- instead of raising an exception.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCurrentPropertyPath()">getCurrentPropertyPath</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the currently loaded property file path for debugging purposes</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getProperty(java.lang.String)">getProperty</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDouble(java.lang.Object)">getDouble</a></span>&#8203;(java.lang.Object&nbsp;keyObj)</code></th>
 <td class="colLast">
-<div class="block">An override of the Java <code>Properties.getProperty(String)</code> method, but use <code>getAsString(String)</code> instead.</div>
+<div class="block">Same as <a href="#getDouble(java.lang.String)"><code>getDouble(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDouble(java.lang.Object,java.lang.String)">getDouble</a></span>&#8203;(java.lang.Object&nbsp;keyObj,
+         java.lang.String&nbsp;defaultValue)</code></th>
+<td class="colLast">
+<div class="block">Same as <a href="#getDouble(java.lang.Object)"><code>getDouble(java.lang.Object)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>static double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDouble(java.lang.String)">getDouble</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
+<td class="colLast">
+<div class="block">Returns the property as a double.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDouble(java.lang.String,double)">getDouble</a></span>&#8203;(java.lang.String&nbsp;key,
+         double&nbsp;defaultValue)</code></th>
+<td class="colLast">
+<div class="block">Same as <a href="#getDouble(java.lang.String)"><code>getDouble(java.lang.String)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInt(java.lang.Object)">getInt</a></span>&#8203;(java.lang.Object&nbsp;keyObj)</code></th>
+<td class="colLast">
+<div class="block">Same as <a href="#getInt(java.lang.String)"><code>getInt(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInt(java.lang.Object,java.lang.String)">getInt</a></span>&#8203;(java.lang.Object&nbsp;keyObj,
+      java.lang.String&nbsp;defaultValue)</code></th>
+<td class="colLast">
+<div class="block">Same as <a href="#getInt(java.lang.Object)"><code>getInt(java.lang.Object)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInt(java.lang.String)">getInt</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
+<td class="colLast">
+<div class="block">Returns the property as an integer.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInt(java.lang.String,int)">getInt</a></span>&#8203;(java.lang.String&nbsp;key,
+      int&nbsp;defaultValue)</code></th>
+<td class="colLast">
+<div class="block">Same as <a href="#getInt(java.lang.String)"><code>getInt(java.lang.String)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getProperty(java.lang.String)">getProperty</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
+<td class="colLast">
+<div class="block">An override of the Java <code>Properties.getProperty(String)</code> method, but use <code>getString(String)</code> instead.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getString(java.lang.Object)">getString</a></span>&#8203;(java.lang.Object&nbsp;keyObj)</code></th>
+<td class="colLast">
+<div class="block">Same as <a href="#getString(java.lang.String)"><code>getString(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getString(java.lang.Object,java.lang.String)">getString</a></span>&#8203;(java.lang.Object&nbsp;keyObj,
+         java.lang.String&nbsp;defaultValue)</code></th>
+<td class="colLast">
+<div class="block">Same as <a href="#getString(java.lang.Object)"><code>getString(java.lang.Object)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getString(java.lang.String)">getString</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
+<td class="colLast">
+<div class="block">Returns the property as a string.</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getString(java.lang.String,java.lang.String)">getString</a></span>&#8203;(java.lang.String&nbsp;key,
+         java.lang.String&nbsp;defaultValue)</code></th>
+<td class="colLast">
+<div class="block">Same as <a href="#getString(java.lang.String)"><code>getString(java.lang.String)</code></a> but takes a default value if the property is not
+ defined, instead of raising an exception.</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#UNSAFE_setSingleton(java.lang.String)">UNSAFE_setSingleton</a></span>&#8203;(java.lang.String&nbsp;propertyPath)</code></th>
 <td class="colLast">
@@ -319,13 +403,13 @@ extends java.util.Properties</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getAsString(java.lang.String)">
+<a id="getString(java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getAsString</h4>
-<pre class="methodSignature">public static&nbsp;java.lang.String&nbsp;getAsString&#8203;(java.lang.String&nbsp;key)</pre>
+<h4>getString</h4>
+<pre class="methodSignature">public static&nbsp;java.lang.String&nbsp;getString&#8203;(java.lang.String&nbsp;key)</pre>
 <div class="block">Returns the property as a string. This is the same as <code>`getProperty()`</code>, but matches
  the type-generation of the other static methods.
 
@@ -338,16 +422,33 @@ extends java.util.Properties</pre>
 </dl>
 </li>
 </ul>
-<a id="getAsString(java.lang.String,java.lang.String)">
+<a id="getString(java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getAsString</h4>
-<pre class="methodSignature">public static&nbsp;java.lang.String&nbsp;getAsString&#8203;(java.lang.String&nbsp;key,
-                                           java.lang.String&nbsp;defaultValue)</pre>
-<div class="block">Same as <a href="#getAsString(java.lang.String)"><code>getAsString(java.lang.String)</code></a> but takes a default value if the property is not defined,
- instead of raising an exception.</div>
+<h4>getString</h4>
+<pre class="methodSignature">public static&nbsp;java.lang.String&nbsp;getString&#8203;(java.lang.Object&nbsp;keyObj)</pre>
+<div class="block">Same as <a href="#getString(java.lang.String)"><code>getString(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keyObj</code> - the object to call <code>toString()</code> on to get the desired property name</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The String value of the property.</dd>
+</dl>
+</li>
+</ul>
+<a id="getString(java.lang.String,java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getString</h4>
+<pre class="methodSignature">public static&nbsp;java.lang.String&nbsp;getString&#8203;(java.lang.String&nbsp;key,
+                                         java.lang.String&nbsp;defaultValue)</pre>
+<div class="block">Same as <a href="#getString(java.lang.String)"><code>getString(java.lang.String)</code></a> but takes a default value if the property is not
+ defined, instead of raising an exception.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The property key to fetch.</dd>
@@ -357,13 +458,32 @@ extends java.util.Properties</pre>
 </dl>
 </li>
 </ul>
-<a id="getAsInt(java.lang.String)">
+<a id="getString(java.lang.Object,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getAsInt</h4>
-<pre class="methodSignature">public static&nbsp;int&nbsp;getAsInt&#8203;(java.lang.String&nbsp;key)</pre>
+<h4>getString</h4>
+<pre class="methodSignature">public static&nbsp;java.lang.String&nbsp;getString&#8203;(java.lang.Object&nbsp;keyObj,
+                                         java.lang.String&nbsp;defaultValue)</pre>
+<div class="block">Same as <a href="#getString(java.lang.Object)"><code>getString(java.lang.Object)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keyObj</code> - the object to call <code>toString()</code> on to get the desired property name</dd>
+<dd><code>defaultValue</code> - The default value if the property does not exist.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The String value of the property.</dd>
+</dl>
+</li>
+</ul>
+<a id="getInt(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getInt</h4>
+<pre class="methodSignature">public static&nbsp;int&nbsp;getInt&#8203;(java.lang.String&nbsp;key)</pre>
 <div class="block">Returns the property as an integer.
 
  An <code>InvalidParameterException</code> will be raised if a property is loaded that does not exist.</div>
@@ -375,15 +495,32 @@ extends java.util.Properties</pre>
 </dl>
 </li>
 </ul>
-<a id="getAsInt(java.lang.String,int)">
+<a id="getInt(java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getAsInt</h4>
-<pre class="methodSignature">public static&nbsp;int&nbsp;getAsInt&#8203;(java.lang.String&nbsp;key,
-                           int&nbsp;defaultValue)</pre>
-<div class="block">Same as <a href="#getAsInt(java.lang.String)"><code>getAsInt(java.lang.String)</code></a> but takes a default value if the property is not defined,
+<h4>getInt</h4>
+<pre class="methodSignature">public static&nbsp;int&nbsp;getInt&#8203;(java.lang.Object&nbsp;keyObj)</pre>
+<div class="block">Same as <a href="#getInt(java.lang.String)"><code>getInt(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keyObj</code> - the object to call <code>toString()</code> on to get the desired property name</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The integer value of the property.</dd>
+</dl>
+</li>
+</ul>
+<a id="getInt(java.lang.String,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getInt</h4>
+<pre class="methodSignature">public static&nbsp;int&nbsp;getInt&#8203;(java.lang.String&nbsp;key,
+                         int&nbsp;defaultValue)</pre>
+<div class="block">Same as <a href="#getInt(java.lang.String)"><code>getInt(java.lang.String)</code></a> but takes a default value if the property is not defined,
  instead of raising an exception.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -394,13 +531,32 @@ extends java.util.Properties</pre>
 </dl>
 </li>
 </ul>
-<a id="getAsBoolean(java.lang.String)">
+<a id="getInt(java.lang.Object,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getAsBoolean</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;getAsBoolean&#8203;(java.lang.String&nbsp;key)</pre>
+<h4>getInt</h4>
+<pre class="methodSignature">public static&nbsp;int&nbsp;getInt&#8203;(java.lang.Object&nbsp;keyObj,
+                         java.lang.String&nbsp;defaultValue)</pre>
+<div class="block">Same as <a href="#getInt(java.lang.Object)"><code>getInt(java.lang.Object)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keyObj</code> - the object to call <code>toString()</code> on to get the desired property name</dd>
+<dd><code>defaultValue</code> - The default value if the property does not exist.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The integer value of the property.</dd>
+</dl>
+</li>
+</ul>
+<a id="getBoolean(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getBoolean</h4>
+<pre class="methodSignature">public static&nbsp;boolean&nbsp;getBoolean&#8203;(java.lang.String&nbsp;key)</pre>
 <div class="block">Returns the property as a boolean.
 
  An <code>InvalidParameterException</code> will be raised if a property is loaded that does not exist.</div>
@@ -412,15 +568,32 @@ extends java.util.Properties</pre>
 </dl>
 </li>
 </ul>
-<a id="getAsBoolean(java.lang.String,boolean)">
+<a id="getBoolean(java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getAsBoolean</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;getAsBoolean&#8203;(java.lang.String&nbsp;key,
-                                   boolean&nbsp;defaultValue)</pre>
-<div class="block">Same as <a href="#getAsBoolean(java.lang.String)"><code>getAsBoolean(java.lang.String)</code></a> but takes a default value if the property is not defined,
+<h4>getBoolean</h4>
+<pre class="methodSignature">public static&nbsp;boolean&nbsp;getBoolean&#8203;(java.lang.Object&nbsp;keyObj)</pre>
+<div class="block">Same as <a href="#getBoolean(java.lang.String)"><code>getBoolean(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keyObj</code> - the object to call <code>toString()</code> on to get the desired property name</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The boolean value of the property.</dd>
+</dl>
+</li>
+</ul>
+<a id="getBoolean(java.lang.String,boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getBoolean</h4>
+<pre class="methodSignature">public static&nbsp;boolean&nbsp;getBoolean&#8203;(java.lang.String&nbsp;key,
+                                 boolean&nbsp;defaultValue)</pre>
+<div class="block">Same as <a href="#getBoolean(java.lang.String)"><code>getBoolean(java.lang.String)</code></a> but takes a default value if the property is not defined,
  instead of raising an exception.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -431,13 +604,32 @@ extends java.util.Properties</pre>
 </dl>
 </li>
 </ul>
-<a id="getAsDouble(java.lang.String)">
+<a id="getBoolean(java.lang.Object,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getAsDouble</h4>
-<pre class="methodSignature">public static&nbsp;double&nbsp;getAsDouble&#8203;(java.lang.String&nbsp;key)</pre>
+<h4>getBoolean</h4>
+<pre class="methodSignature">public static&nbsp;boolean&nbsp;getBoolean&#8203;(java.lang.Object&nbsp;keyObj,
+                                 java.lang.String&nbsp;defaultValue)</pre>
+<div class="block">Same as <a href="#getBoolean(java.lang.Object)"><code>getBoolean(java.lang.Object)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keyObj</code> - the object to call <code>toString()</code> on to get the desired property name</dd>
+<dd><code>defaultValue</code> - The default value if the property does not exist.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The boolean value of the property.</dd>
+</dl>
+</li>
+</ul>
+<a id="getDouble(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDouble</h4>
+<pre class="methodSignature">public static&nbsp;double&nbsp;getDouble&#8203;(java.lang.String&nbsp;key)</pre>
 <div class="block">Returns the property as a double.
 
  An <code>InvalidParameterException</code> will be raised if a property is loaded that does not exist.</div>
@@ -449,19 +641,55 @@ extends java.util.Properties</pre>
 </dl>
 </li>
 </ul>
-<a id="getAsDouble(java.lang.String,double)">
+<a id="getDouble(java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getAsDouble</h4>
-<pre class="methodSignature">public static&nbsp;double&nbsp;getAsDouble&#8203;(java.lang.String&nbsp;key,
-                                 double&nbsp;defaultValue)</pre>
-<div class="block">Same as <a href="#getAsDouble(java.lang.String)"><code>getAsDouble(java.lang.String)</code></a> but takes a default value if the property is not defined,
+<h4>getDouble</h4>
+<pre class="methodSignature">public static&nbsp;double&nbsp;getDouble&#8203;(java.lang.Object&nbsp;keyObj)</pre>
+<div class="block">Same as <a href="#getDouble(java.lang.String)"><code>getDouble(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keyObj</code> - the object to call <code>toString()</code> on to get the desired property name</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The double value of the property.</dd>
+</dl>
+</li>
+</ul>
+<a id="getDouble(java.lang.String,double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDouble</h4>
+<pre class="methodSignature">public static&nbsp;double&nbsp;getDouble&#8203;(java.lang.String&nbsp;key,
+                               double&nbsp;defaultValue)</pre>
+<div class="block">Same as <a href="#getDouble(java.lang.String)"><code>getDouble(java.lang.String)</code></a> but takes a default value if the property is not defined,
  instead of raising an exception.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The property key to fetch.</dd>
+<dd><code>defaultValue</code> - The default value if the property does not exist.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The double value of the property.</dd>
+</dl>
+</li>
+</ul>
+<a id="getDouble(java.lang.Object,java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDouble</h4>
+<pre class="methodSignature">public static&nbsp;double&nbsp;getDouble&#8203;(java.lang.Object&nbsp;keyObj,
+                               java.lang.String&nbsp;defaultValue)</pre>
+<div class="block">Same as <a href="#getDouble(java.lang.Object)"><code>getDouble(java.lang.Object)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keyObj</code> - the object to call <code>toString()</code> on to get the desired property name</dd>
 <dd><code>defaultValue</code> - The default value if the property does not exist.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The double value of the property.</dd>
@@ -489,7 +717,7 @@ extends java.util.Properties</pre>
 <li class="blockList">
 <h4>getProperty</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getProperty&#8203;(java.lang.String&nbsp;key)</pre>
-<div class="block">An override of the Java <code>Properties.getProperty(String)</code> method, but use <code>getAsString(String)</code> instead.</div>
+<div class="block">An override of the Java <code>Properties.getProperty(String)</code> method, but use <code>getString(String)</code> instead.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>getProperty</code>&nbsp;in class&nbsp;<code>java.util.Properties</code></dd>

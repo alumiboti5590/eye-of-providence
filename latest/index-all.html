@@ -186,42 +186,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Returns the A button press as a Trigger to be used in Command-based programming.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsBoolean(java.lang.String)">getAsBoolean(String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
-<dd>
-<div class="block">Returns the property as a boolean.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsBoolean(java.lang.String,boolean)">getAsBoolean(String, boolean)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
-<dd>
-<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsBoolean(java.lang.String)"><code>RobotProperty.getAsBoolean(java.lang.String)</code></a> but takes a default value if the property is not defined,
- instead of raising an exception.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsDouble(java.lang.String)">getAsDouble(String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
-<dd>
-<div class="block">Returns the property as a double.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsDouble(java.lang.String,double)">getAsDouble(String, double)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
-<dd>
-<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsDouble(java.lang.String)"><code>RobotProperty.getAsDouble(java.lang.String)</code></a> but takes a default value if the property is not defined,
- instead of raising an exception.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsInt(java.lang.String)">getAsInt(String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
-<dd>
-<div class="block">Returns the property as an integer.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsInt(java.lang.String,int)">getAsInt(String, int)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
-<dd>
-<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsInt(java.lang.String)"><code>RobotProperty.getAsInt(java.lang.String)</code></a> but takes a default value if the property is not defined,
- instead of raising an exception.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsString(java.lang.String)">getAsString(String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
-<dd>
-<div class="block">Returns the property as a string.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsString(java.lang.String,java.lang.String)">getAsString(String, String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
-<dd>
-<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getAsString(java.lang.String)"><code>RobotProperty.getAsString(java.lang.String)</code></a> but takes a default value if the property is not defined,
- instead of raising an exception.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/controllers/XboxController.html#getBackButtonTrigger()">getBackButtonTrigger()</a></span> - Method in class com.alumiboti5590.eop.controllers.<a href="com/alumiboti5590/eop/controllers/XboxController.html" title="class in com.alumiboti5590.eop.controllers">XboxController</a></dt>
 <dd>
 <div class="block">Returns the Back button press as a Trigger to be used in Command-based programming.</div>
@@ -230,9 +194,66 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Returns the B button press as a Trigger to be used in Command-based programming.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getBoolean(java.lang.Object)">getBoolean(Object)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getBoolean(java.lang.String)"><code>RobotProperty.getBoolean(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getBoolean(java.lang.Object,java.lang.String)">getBoolean(Object, String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getBoolean(java.lang.Object)"><code>RobotProperty.getBoolean(java.lang.Object)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getBoolean(java.lang.String)">getBoolean(String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Returns the property as a boolean.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getBoolean(java.lang.String,boolean)">getBoolean(String, boolean)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getBoolean(java.lang.String)"><code>RobotProperty.getBoolean(java.lang.String)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getCurrentPropertyPath()">getCurrentPropertyPath()</a></span> - Method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
 <dd>
 <div class="block">Returns the currently loaded property file path for debugging purposes</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getDouble(java.lang.Object)">getDouble(Object)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getDouble(java.lang.String)"><code>RobotProperty.getDouble(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getDouble(java.lang.Object,java.lang.String)">getDouble(Object, String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getDouble(java.lang.Object)"><code>RobotProperty.getDouble(java.lang.Object)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getDouble(java.lang.String)">getDouble(String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Returns the property as a double.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getDouble(java.lang.String,double)">getDouble(String, double)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getDouble(java.lang.String)"><code>RobotProperty.getDouble(java.lang.String)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getInt(java.lang.Object)">getInt(Object)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getInt(java.lang.String)"><code>RobotProperty.getInt(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getInt(java.lang.Object,java.lang.String)">getInt(Object, String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getInt(java.lang.Object)"><code>RobotProperty.getInt(java.lang.Object)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getInt(java.lang.String)">getInt(String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Returns the property as an integer.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getInt(java.lang.String,int)">getInt(String, int)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getInt(java.lang.String)"><code>RobotProperty.getInt(java.lang.String)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/controllers/XboxController.html#getLeftBumperTrigger()">getLeftBumperTrigger()</a></span> - Method in class com.alumiboti5590.eop.controllers.<a href="com/alumiboti5590/eop/controllers/XboxController.html" title="class in com.alumiboti5590.eop.controllers">XboxController</a></dt>
 <dd>
@@ -255,7 +276,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getProperty(java.lang.String)">getProperty(String)</a></span> - Method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
 <dd>
-<div class="block">An override of the Java <code>Properties.getProperty(String)</code> method, but use <code>getAsString(String)</code> instead.</div>
+<div class="block">An override of the Java <code>Properties.getProperty(String)</code> method, but use <code>getString(String)</code> instead.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/controllers/XboxController.html#getRightBumperTrigger()">getRightBumperTrigger()</a></span> - Method in class com.alumiboti5590.eop.controllers.<a href="com/alumiboti5590/eop/controllers/XboxController.html" title="class in com.alumiboti5590.eop.controllers">XboxController</a></dt>
 <dd>
@@ -277,6 +298,25 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/controllers/XboxController.html#getStartButtonTrigger()">getStartButtonTrigger()</a></span> - Method in class com.alumiboti5590.eop.controllers.<a href="com/alumiboti5590/eop/controllers/XboxController.html" title="class in com.alumiboti5590.eop.controllers">XboxController</a></dt>
 <dd>
 <div class="block">Returns the Start button press as a Trigger to be used in Command-based programming.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getString(java.lang.Object)">getString(Object)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getString(java.lang.String)"><code>RobotProperty.getString(java.lang.String)</code></a> but takes anything with a <code>toString()</code> method -
+ which is everything in Java - so you can pass enumerations and the sort.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getString(java.lang.Object,java.lang.String)">getString(Object, String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getString(java.lang.Object)"><code>RobotProperty.getString(java.lang.Object)</code></a> but takes a default value if the property is not defined,
+ instead of raising an exception.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getString(java.lang.String)">getString(String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Returns the property as a string.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getString(java.lang.String,java.lang.String)">getString(String, String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
+<dd>
+<div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getString(java.lang.String)"><code>RobotProperty.getString(java.lang.String)</code></a> but takes a default value if the property is not
+ defined, instead of raising an exception.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/subsystems/drivetrain/tank/TankDrive.html#getTeleopDriveTypeSendableChooser()">getTeleopDriveTypeSendableChooser()</a></span> - Method in class com.alumiboti5590.eop.subsystems.drivetrain.tank.<a href="com/alumiboti5590/eop/subsystems/drivetrain/tank/TankDrive.html" title="class in com.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a></dt>
 <dd>
