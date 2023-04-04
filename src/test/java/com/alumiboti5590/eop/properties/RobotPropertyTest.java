@@ -12,6 +12,14 @@ import org.junit.jupiter.api.Test;
 
 public class RobotPropertyTest {
 
+    // Used to test fetching value from enumeration
+    private enum Properties {
+        a_string,
+        a_positive_integer,
+        a_positive_double,
+        a_true_boolean;
+    }
+
     private Path workingDirectory;
 
     @BeforeEach
@@ -26,34 +34,43 @@ public class RobotPropertyTest {
     // ~~~~~~~~~~~~
 
     @Test
-    @DisplayName("getAsString works with existing key")
-    public void getAsStringExistingKey() {
+    @DisplayName("getString works with existing key")
+    public void getStringExistingKey() {
         String expected = "Hello World!";
-        String actual = RobotProperty.getAsString("a_string");
+        String actual = RobotProperty.getString("a_string");
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
 
     @Test
-    @DisplayName("getAsString raises an exception on a missing key")
-    public void getAsStringMissingKey() {
-        assertThrows(InvalidParameterException.class, () -> RobotProperty.getAsString("another_string"));
+    @DisplayName("getString raises an exception on a missing key")
+    public void getStringMissingKey() {
+        assertThrows(InvalidParameterException.class, () -> RobotProperty.getString("another_string"));
     }
 
     @Test
-    @DisplayName("getAsString works returns real value if default is given")
-    public void getAsStringReturnsRealIfDefaultGiven() {
+    @DisplayName("getString works returns real value if default is given")
+    public void getStringReturnsRealIfDefaultGiven() {
         String expected = "Hello World!";
-        String actual = RobotProperty.getAsString("a_string", "Goodbye world!");
+        String actual = RobotProperty.getString("a_string", "Goodbye world!");
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
 
     @Test
-    @DisplayName("getAsString works returns default value if missing property")
-    public void getAsStringReturnsDefaultIfMissing() {
+    @DisplayName("getString works returns default value if missing property")
+    public void getStringReturnsDefaultIfMissing() {
         String expected = "Hello World!";
-        String actual = RobotProperty.getAsString("another_string", expected);
+        String actual = RobotProperty.getString("another_string", expected);
+
+        assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
+    }
+
+    @Test
+    @DisplayName("getString works given an enum value")
+    public void getStringExistingKeyViaEnumeration() {
+        String expected = "Hello World!";
+        String actual = RobotProperty.getString(Properties.a_string);
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
@@ -63,43 +80,52 @@ public class RobotPropertyTest {
     // ~~~~~~~~~~~~~
 
     @Test
-    @DisplayName("getAsInt works with existing key")
-    public void getAsIntExistingKey() {
+    @DisplayName("getInt works with existing key")
+    public void getIntExistingKey() {
         int expected = 0;
-        int actual = RobotProperty.getAsInt("a_zero_integer");
+        int actual = RobotProperty.getInt("a_zero_integer");
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
 
     @Test
-    @DisplayName("getAsInt works with a negative existing key")
-    public void getAsIntNegativeExistingKey() {
+    @DisplayName("getInt works with a negative existing key")
+    public void getIntNegativeExistingKey() {
         int expected = -12;
-        int actual = RobotProperty.getAsInt("a_negative_integer");
+        int actual = RobotProperty.getInt("a_negative_integer");
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
 
     @Test
-    @DisplayName("getAsInt raises an exception on a missing key")
-    public void getAsIntMissingKey() {
-        assertThrows(InvalidParameterException.class, () -> RobotProperty.getAsInt("another_string"));
+    @DisplayName("getInt raises an exception on a missing key")
+    public void getIntMissingKey() {
+        assertThrows(InvalidParameterException.class, () -> RobotProperty.getInt("another_string"));
     }
 
     @Test
-    @DisplayName("getAsInt works returns real value if default is given")
-    public void getAsIntReturnsRealIfDefaultGiven() {
+    @DisplayName("getInt works returns real value if default is given")
+    public void getIntReturnsRealIfDefaultGiven() {
         int expected = 15;
-        int actual = RobotProperty.getAsInt("a_positive_integer", 10);
+        int actual = RobotProperty.getInt("a_positive_integer", 10);
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
 
     @Test
-    @DisplayName("getAsInt works returns default value if missing property")
-    public void getAsIntReturnsDefaultIfMissing() {
+    @DisplayName("getInt works returns default value if missing property")
+    public void getIntReturnsDefaultIfMissing() {
         int expected = 6;
-        int actual = RobotProperty.getAsInt("another_integer", expected);
+        int actual = RobotProperty.getInt("another_integer", expected);
+
+        assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
+    }
+
+    @Test
+    @DisplayName("getInt works given an enum value")
+    public void getIntExistingKeyViaEnumeration() {
+        int expected = 15;
+        int actual = RobotProperty.getInt(Properties.a_positive_integer);
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
@@ -109,43 +135,52 @@ public class RobotPropertyTest {
     // ~~~~~~~~~~~~~
 
     @Test
-    @DisplayName("getAsDouble works with existing key")
-    public void getAsDoubleExistingKey() {
+    @DisplayName("getDouble works with existing key")
+    public void getDoubleExistingKey() {
         double expected = 0;
-        double actual = RobotProperty.getAsDouble("a_zero_double");
+        double actual = RobotProperty.getDouble("a_zero_double");
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
 
     @Test
-    @DisplayName("getAsDouble works with a negative existing key")
-    public void getAsDoubleNegativeExistingKey() {
+    @DisplayName("getDouble works with a negative existing key")
+    public void getDoubleNegativeExistingKey() {
         double expected = -12.2;
-        double actual = RobotProperty.getAsDouble("a_negative_double");
+        double actual = RobotProperty.getDouble("a_negative_double");
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
 
     @Test
-    @DisplayName("getAsDouble raises an exception on a missing key")
-    public void getAsDoubleMissingKey() {
-        assertThrows(InvalidParameterException.class, () -> RobotProperty.getAsDouble("another_string"));
+    @DisplayName("getDouble raises an exception on a missing key")
+    public void getDoubleMissingKey() {
+        assertThrows(InvalidParameterException.class, () -> RobotProperty.getDouble("another_string"));
     }
 
     @Test
-    @DisplayName("getAsDouble works returns real value if default is given")
-    public void getAsDoubleReturnsRealIfDefaultGiven() {
+    @DisplayName("getDouble works returns real value if default is given")
+    public void getDoubleReturnsRealIfDefaultGiven() {
         double expected = 15.456;
-        double actual = RobotProperty.getAsDouble("a_positive_double", 10);
+        double actual = RobotProperty.getDouble("a_positive_double", 10);
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
 
     @Test
-    @DisplayName("getAsDouble works returns default value if missing property")
-    public void getAsDoubleReturnsDefaultIfMissing() {
+    @DisplayName("getDouble works returns default value if missing property")
+    public void getDoubleReturnsDefaultIfMissing() {
         double expected = 6;
-        double actual = RobotProperty.getAsDouble("another_double", expected);
+        double actual = RobotProperty.getDouble("another_double", expected);
+
+        assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
+    }
+
+    @Test
+    @DisplayName("getDouble works given an enum value")
+    public void getDoubleExistingKeyViaEnumeration() {
+        double expected = 15.456;
+        double actual = RobotProperty.getDouble(Properties.a_positive_double);
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
@@ -155,43 +190,52 @@ public class RobotPropertyTest {
     // ~~~~~~~~~~~~~
 
     @Test
-    @DisplayName("getAsBoolean works with existing key")
-    public void getAsBooleanTrueExistingKey() {
+    @DisplayName("getBoolean works with existing key")
+    public void getBooleanTrueExistingKey() {
         boolean expected = true;
-        boolean actual = RobotProperty.getAsBoolean("a_true_boolean");
+        boolean actual = RobotProperty.getBoolean("a_true_boolean");
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
 
     @Test
-    @DisplayName("getAsBoolean works with a negative existing key")
-    public void getAsBooleanFalseExistingKey() {
+    @DisplayName("getBoolean works with a negative existing key")
+    public void getBooleanFalseExistingKey() {
         boolean expected = false;
-        boolean actual = RobotProperty.getAsBoolean("a_false_boolean");
+        boolean actual = RobotProperty.getBoolean("a_false_boolean");
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
 
     @Test
-    @DisplayName("getAsBoolean raises an exception on a missing key")
-    public void getAsBooleanMissingKey() {
-        assertThrows(InvalidParameterException.class, () -> RobotProperty.getAsBoolean("another_string"));
+    @DisplayName("getBoolean raises an exception on a missing key")
+    public void getBooleanMissingKey() {
+        assertThrows(InvalidParameterException.class, () -> RobotProperty.getBoolean("another_string"));
     }
 
     @Test
-    @DisplayName("getAsBoolean works returns real value if default is given")
-    public void getAsBooleanReturnsRealIfDefaultGiven() {
+    @DisplayName("getBoolean works returns real value if default is given")
+    public void getBooleanReturnsRealIfDefaultGiven() {
         boolean expected = true;
-        boolean actual = RobotProperty.getAsBoolean("a_true_boolean", false);
+        boolean actual = RobotProperty.getBoolean("a_true_boolean", false);
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }
 
     @Test
-    @DisplayName("getAsBoolean works returns default value if missing property")
-    public void getAsBooleanReturnsDefaultIfMissing() {
+    @DisplayName("getBoolean works returns default value if missing property")
+    public void getBooleanReturnsDefaultIfMissing() {
         boolean expected = false;
-        boolean actual = RobotProperty.getAsBoolean("another_boolean", expected);
+        boolean actual = RobotProperty.getBoolean("another_boolean", expected);
+
+        assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
+    }
+
+    @Test
+    @DisplayName("getBoolean works given an enum value")
+    public void getBooleanExistingKeyViaEnumeration() {
+        boolean expected = true;
+        boolean actual = RobotProperty.getBoolean(Properties.a_true_boolean);
 
         assertEquals(expected, actual, MessageFormat.format("Expected {0} to equal {1}", expected, actual));
     }

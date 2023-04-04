@@ -21,9 +21,25 @@ import java.util.Properties;
  * provided by WPILib.
  *
  * <p>Access to properties should be done via the {@code getAs...} static methods, such as
- * {@code getAsString()}, {@code getAsInt()}, {@code getAsDouble()}, and {@code getAsBoolean()}.
+ * {@code getString()}, {@code getInt()}, {@code getDouble()}, and {@code getBoolean()}.
  * Each also accepts a second parameter representing the default value if the property
  * key is not defined.
+ *
+ * <p>Examples include:
+ *
+ * <pre>
+ *   String val = RobotProperty.getString("my_property");
+ *   int motorId = RobotProperty.getInt("arm_motor_id");
+ *   boolean isInverted = RobotProperty.getInt("is_inverted");
+ *   double pValue = RobotProperty.getDouble("pid_p");
+ *
+ *   // You can also use enumerations, or anything with a 'toString()' value to resolve
+ *   public enum KnownProperties {
+ *     drivetrain_left_motor_id;
+ *   }
+ *
+ *   int motorId = RobotProperty.getInt(KnownProperties.drivetrain_left_motor_id);
+ * </pre>
  * @see <a href="https://docs.wpilib.org/en/stable/docs/software/advanced-gradlerio/deploy-git-data.html#using-deployed-files">WPILib Deployed Files</a>
  */
 public class RobotProperty extends Properties {
@@ -40,23 +56,44 @@ public class RobotProperty extends Properties {
      * @param key The property key to fetch.
      * @return The String value of the property.
      */
-    public static String getAsString(String key) {
+    public static String getString(String key) {
         return getSingleton().getProperty(key);
     }
 
     /**
-     * Same as {@link getAsString(String)} but takes a default value if the property is not defined,
-     * instead of raising an exception.
+     * Same as {@link getString(String)} but takes anything with a {@code toString()} method -
+     * which is everything in Java - so you can pass enumerations and the sort.
+     * @param keyObj the object to call {@code toString()} on to get the desired property name
+     * @return The String value of the property.
+     */
+    public static String getString(Object keyObj) {
+        return getString(keyObj.toString());
+    }
+
+    /**
+     * Same as {@link getString(String)} but takes a default value if the property is not
+     * defined, instead of raising an exception.
      * @param key The property key to fetch.
      * @param defaultValue The default value if the property does not exist.
      * @return The String value of the property.
      */
-    public static String getAsString(String key, String defaultValue) {
+    public static String getString(String key, String defaultValue) {
         try {
             return getSingleton().getProperty(key);
         } catch (InvalidParameterException e) {
             return defaultValue;
         }
+    }
+
+    /**
+     * Same as {@link getString(Object)} but takes a default value if the property is not defined,
+     * instead of raising an exception.
+     * @param keyObj the object to call {@code toString()} on to get the desired property name
+     * @param defaultValue The default value if the property does not exist.
+     * @return The String value of the property.
+     */
+    public static String getString(Object keyObj, String defaultValue) {
+        return getString(keyObj.toString(), defaultValue);
     }
 
     /**
@@ -66,23 +103,44 @@ public class RobotProperty extends Properties {
      * @param key The property key to fetch.
      * @return The integer value of the property.
      */
-    public static int getAsInt(String key) {
-        return Integer.parseInt(getAsString(key));
+    public static int getInt(String key) {
+        return Integer.parseInt(getString(key));
     }
 
     /**
-     * Same as {@link getAsInt(String)} but takes a default value if the property is not defined,
+     * Same as {@link getInt(String)} but takes anything with a {@code toString()} method -
+     * which is everything in Java - so you can pass enumerations and the sort.
+     * @param keyObj the object to call {@code toString()} on to get the desired property name
+     * @return The integer value of the property.
+     */
+    public static int getInt(Object keyObj) {
+        return getInt(keyObj.toString());
+    }
+
+    /**
+     * Same as {@link getInt(String)} but takes a default value if the property is not defined,
      * instead of raising an exception.
      * @param key The property key to fetch.
      * @param defaultValue The default value if the property does not exist.
      * @return The integer value of the property.
      */
-    public static int getAsInt(String key, int defaultValue) {
+    public static int getInt(String key, int defaultValue) {
         try {
-            return getAsInt(key);
+            return getInt(key);
         } catch (InvalidParameterException e) {
             return defaultValue;
         }
+    }
+
+    /**
+     * Same as {@link getInt(Object)} but takes a default value if the property is not defined,
+     * instead of raising an exception.
+     * @param keyObj the object to call {@code toString()} on to get the desired property name
+     * @param defaultValue The default value if the property does not exist.
+     * @return The integer value of the property.
+     */
+    public static int getInt(Object keyObj, String defaultValue) {
+        return getInt(keyObj.toString(), defaultValue);
     }
 
     /**
@@ -92,23 +150,44 @@ public class RobotProperty extends Properties {
      * @param key The property key to fetch.
      * @return The boolean value of the property.
      */
-    public static boolean getAsBoolean(String key) {
-        return Boolean.parseBoolean(getAsString(key));
+    public static boolean getBoolean(String key) {
+        return Boolean.parseBoolean(getString(key));
     }
 
     /**
-     * Same as {@link getAsBoolean(String)} but takes a default value if the property is not defined,
+     * Same as {@link getBoolean(String)} but takes anything with a {@code toString()} method -
+     * which is everything in Java - so you can pass enumerations and the sort.
+     * @param keyObj the object to call {@code toString()} on to get the desired property name
+     * @return The boolean value of the property.
+     */
+    public static boolean getBoolean(Object keyObj) {
+        return getBoolean(keyObj.toString());
+    }
+
+    /**
+     * Same as {@link getBoolean(String)} but takes a default value if the property is not defined,
      * instead of raising an exception.
      * @param key The property key to fetch.
      * @param defaultValue The default value if the property does not exist.
      * @return The boolean value of the property.
      */
-    public static boolean getAsBoolean(String key, boolean defaultValue) {
+    public static boolean getBoolean(String key, boolean defaultValue) {
         try {
-            return getAsBoolean(key);
+            return getBoolean(key);
         } catch (InvalidParameterException e) {
             return defaultValue;
         }
+    }
+
+    /**
+     * Same as {@link getBoolean(Object)} but takes a default value if the property is not defined,
+     * instead of raising an exception.
+     * @param keyObj the object to call {@code toString()} on to get the desired property name
+     * @param defaultValue The default value if the property does not exist.
+     * @return The boolean value of the property.
+     */
+    public static boolean getBoolean(Object keyObj, String defaultValue) {
+        return getBoolean(keyObj.toString(), defaultValue);
     }
 
     /**
@@ -118,23 +197,44 @@ public class RobotProperty extends Properties {
      * @param key The property key to fetch.
      * @return The double value of the property.
      */
-    public static double getAsDouble(String key) {
-        return Double.parseDouble(getAsString(key));
+    public static double getDouble(String key) {
+        return Double.parseDouble(getString(key));
     }
 
     /**
-     * Same as {@link getAsDouble(String)} but takes a default value if the property is not defined,
+     * Same as {@link getDouble(String)} but takes anything with a {@code toString()} method -
+     * which is everything in Java - so you can pass enumerations and the sort.
+     * @param keyObj the object to call {@code toString()} on to get the desired property name
+     * @return The double value of the property.
+     */
+    public static double getDouble(Object keyObj) {
+        return getDouble(keyObj.toString());
+    }
+
+    /**
+     * Same as {@link getDouble(String)} but takes a default value if the property is not defined,
      * instead of raising an exception.
      * @param key The property key to fetch.
      * @param defaultValue The default value if the property does not exist.
      * @return The double value of the property.
      */
-    public static double getAsDouble(String key, double defaultValue) {
+    public static double getDouble(String key, double defaultValue) {
         try {
-            return getAsDouble(key);
+            return getDouble(key);
         } catch (InvalidParameterException e) {
             return defaultValue;
         }
+    }
+
+    /**
+     * Same as {@link getDouble(Object)} but takes a default value if the property is not defined,
+     * instead of raising an exception.
+     * @param keyObj the object to call {@code toString()} on to get the desired property name
+     * @param defaultValue The default value if the property does not exist.
+     * @return The double value of the property.
+     */
+    public static double getDouble(Object keyObj, String defaultValue) {
+        return getDouble(keyObj.toString(), defaultValue);
     }
 
     /**
@@ -203,7 +303,7 @@ public class RobotProperty extends Properties {
     }
 
     /**
-     * An override of the Java {@code Properties.getProperty(String)} method, but use {@code getAsString(String)} instead.
+     * An override of the Java {@code Properties.getProperty(String)} method, but use {@code getString(String)} instead.
      */
     @Override
     public String getProperty(String key) {
