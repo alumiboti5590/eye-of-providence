@@ -92,7 +92,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </nav>
 </header>
 <main role="main">
-<div class="contentContainer"><a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:X">X</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:C">
+<div class="contentContainer"><a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:X">X</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:C">
 <!--   -->
 </a>
 <h2 class="title">C</h2>
@@ -116,6 +116,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="com/alumiboti5590/eop/components/motors/util/CANSparkMaxUtil.Usage.html" title="enum in com.alumiboti5590.eop.components.motors.util"><span class="typeNameLink">CANSparkMaxUtil.Usage</span></a> - Enum in <a href="com/alumiboti5590/eop/components/motors/util/package-summary.html">com.alumiboti5590.eop.components.motors.util</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/alumiboti5590/eop/components/package-summary.html">com.alumiboti5590.eop.components</a> - package com.alumiboti5590.eop.components</dt>
+<dd>
+<div class="block">Classes and abstractions of electrical, pneumatic, and physical components
+ that are not complex enough to be subsystems, such as motor controllers and
+ extra gyros.</div>
+</dd>
 <dt><a href="com/alumiboti5590/eop/components/motors/util/package-summary.html">com.alumiboti5590.eop.components.motors.util</a> - package com.alumiboti5590.eop.components.motors.util</dt>
 <dd>
 <div class="block">Utilities, shortcuts, and helpers that are not motors themselves, but help manage motors.</div>
@@ -213,6 +219,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getBoolean(java.lang.String)"><code>RobotProperty.getBoolean(java.lang.String)</code></a> but takes a default value if the property is not defined,
  instead of raising an exception.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotPropertyUtil.html#getCANMotorConfig(java.lang.String)">getCANMotorConfig(String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotPropertyUtil.html" title="class in com.alumiboti5590.eop.properties">RobotPropertyUtil</a></dt>
+<dd>
+<div class="block">Shortcut to return a <code>CANMotorConfig</code> using the <code>RobotProperty</code> class and a motor name.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getCurrentPropertyPath()">getCurrentPropertyPath()</a></span> - Method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
 <dd>
 <div class="block">Returns the currently loaded property file path for debugging purposes</div>
@@ -235,6 +245,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Same as <a href="com/alumiboti5590/eop/properties/RobotProperty.html#getDouble(java.lang.String)"><code>RobotProperty.getDouble(java.lang.String)</code></a> but takes a default value if the property is not defined,
  instead of raising an exception.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotPropertyUtil.html#getEncoder(java.lang.String)">getEncoder(String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotPropertyUtil.html" title="class in com.alumiboti5590.eop.properties">RobotPropertyUtil</a></dt>
+<dd>
+<div class="block">Shortcut to return a <code>CANMotorConfig</code> using the <code>RobotProperty</code> class and an encoder name.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotProperty.html#getInt(java.lang.Object)">getInt(Object)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></dt>
 <dd>
@@ -271,6 +285,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Returns if the Left Trigger axis is pushed in enough to be considered "pressed", using <a href="com/alumiboti5590/eop/controllers/XboxController.html#triggerAsTriggerDeadzones"><code>XboxController.triggerAsTriggerDeadzones</code></a>
  as the minimum value required to be considered "pressed".</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotPropertyUtil.html#getLimitSwitch(java.lang.String)">getLimitSwitch(String)</a></span> - Static method in class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotPropertyUtil.html" title="class in com.alumiboti5590.eop.properties">RobotPropertyUtil</a></dt>
+<dd>
+<div class="block">Shortcut to return a <code>LimitSwitch</code> using the <code>RobotProperty</code> class and a motor name.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/subsystems/drivetrain/tank/TankDrive.TeleopDriveType.html#getName()">getName()</a></span> - Method in enum com.alumiboti5590.eop.subsystems.drivetrain.tank.<a href="com/alumiboti5590/eop/subsystems/drivetrain/tank/TankDrive.TeleopDriveType.html" title="enum in com.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive.TeleopDriveType</a></dt>
 <dd>&nbsp;</dd>
@@ -331,6 +349,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Returns the Y button press as a Trigger to be used in Command-based programming.</div>
 </dd>
 </dl>
+<a id="I:I">
+<!--   -->
+</a>
+<h2 class="title">I</h2>
+<dl>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/components/LimitSwitch.html#isEngaged()">isEngaged()</a></span> - Method in class com.alumiboti5590.eop.components.<a href="com/alumiboti5590/eop/components/LimitSwitch.html" title="class in com.alumiboti5590.eop.components">LimitSwitch</a></dt>
+<dd>
+<div class="block">Same as <code>get()</code>, but it's a bit more clearer on the physical result
+ of the limit switch being pressed and engaged, or not.</div>
+</dd>
+</dl>
 <a id="I:K">
 <!--   -->
 </a>
@@ -382,6 +411,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/components/motors/util/CANSparkMaxUtil.Usage.html#kVelocityOnly">kVelocityOnly</a></span> - com.alumiboti5590.eop.components.motors.util.<a href="com/alumiboti5590/eop/components/motors/util/CANSparkMaxUtil.Usage.html" title="enum in com.alumiboti5590.eop.components.motors.util">CANSparkMaxUtil.Usage</a></dt>
 <dd>&nbsp;</dd>
+</dl>
+<a id="I:L">
+<!--   -->
+</a>
+<h2 class="title">L</h2>
+<dl>
+<dt><a href="com/alumiboti5590/eop/components/LimitSwitch.html" title="class in com.alumiboti5590.eop.components"><span class="typeNameLink">LimitSwitch</span></a> - Class in <a href="com/alumiboti5590/eop/components/package-summary.html">com.alumiboti5590.eop.components</a></dt>
+<dd>
+<div class="block">Shortcut wrapper around the WPI <code>DigitalInput</code> class for a Digital
+ I/O-configured Limit Switch.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/components/LimitSwitch.html#%3Cinit%3E(int)">LimitSwitch(int)</a></span> - Constructor for class com.alumiboti5590.eop.components.<a href="com/alumiboti5590/eop/components/LimitSwitch.html" title="class in com.alumiboti5590.eop.components">LimitSwitch</a></dt>
+<dd>
+<div class="block">Create an instance of a LimitSwitch class.</div>
+</dd>
 </dl>
 <a id="I:M">
 <!--   -->
@@ -435,6 +479,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">RobotProperty is an extension of normal Java Properties, but can be accessed in
  a static manner.</div>
 </dd>
+<dt><a href="com/alumiboti5590/eop/properties/RobotPropertyUtil.html" title="class in com.alumiboti5590.eop.properties"><span class="typeNameLink">RobotPropertyUtil</span></a> - Class in <a href="com/alumiboti5590/eop/properties/package-summary.html">com.alumiboti5590.eop.properties</a></dt>
+<dd>
+<div class="block">RobotPropertyUtil is used to shortcut many component creations using common
+ naming conventions such as motors, encoders, and more.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/alumiboti5590/eop/properties/RobotPropertyUtil.html#%3Cinit%3E()">RobotPropertyUtil()</a></span> - Constructor for class com.alumiboti5590.eop.properties.<a href="com/alumiboti5590/eop/properties/RobotPropertyUtil.html" title="class in com.alumiboti5590.eop.properties">RobotPropertyUtil</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <a id="I:S">
 <!--   -->
@@ -650,7 +701,7 @@ the order they are declared.</div>
  deadzone values.</div>
 </dd>
 </dl>
-<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:X">X</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
+<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:X">X</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
 </main>
 <footer role="contentinfo">
 <nav role="navigation">

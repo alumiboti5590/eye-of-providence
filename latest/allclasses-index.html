@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":2,"i1":2,"i2":4,"i3":4,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":4,"i10":2};
+var data = {"i0":2,"i1":2,"i2":4,"i3":2,"i4":4,"i5":2,"i6":2,"i7":2,"i8":2,"i9":2,"i10":2,"i11":4,"i12":2};
 var tabs = {65535:["t0","All Classes"],2:["t2","Class Summary"],4:["t3","Enum Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -128,52 +128,66 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><a href="com/alumiboti5590/eop/components/LimitSwitch.html" title="class in com.alumiboti5590.eop.components">LimitSwitch</a></td>
+<th class="colLast" scope="row">
+<div class="block">Shortcut wrapper around the WPI <code>DigitalInput</code> class for a Digital
+ I/O-configured Limit Switch.</div>
+</th>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><a href="com/alumiboti5590/eop/components/motors/util/MotorIdleMode.html" title="enum in com.alumiboti5590.eop.components.motors.util">MotorIdleMode</a></td>
 <th class="colLast" scope="row">
 <div class="block">A single interface for controlling motor idles that allows for spanning RevRobotics or CTRE libraries.</div>
 </th>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><a href="com/alumiboti5590/eop/pid/PIDGains.html" title="class in com.alumiboti5590.eop.pid">PIDGains</a></td>
 <th class="colLast" scope="row">
 <div class="block">PIDGains allows for easily storing PID values in an object that can be pulled
  out and used against PID controllers.</div>
 </th>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><a href="com/alumiboti5590/eop/properties/RobotProperty.html" title="class in com.alumiboti5590.eop.properties">RobotProperty</a></td>
 <th class="colLast" scope="row">
 <div class="block">RobotProperty is an extension of normal Java Properties, but can be accessed in
  a static manner.</div>
 </th>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
+<td class="colFirst"><a href="com/alumiboti5590/eop/properties/RobotPropertyUtil.html" title="class in com.alumiboti5590.eop.properties">RobotPropertyUtil</a></td>
+<th class="colLast" scope="row">
+<div class="block">RobotPropertyUtil is used to shortcut many component creations using common
+ naming conventions such as motors, encoders, and more.</div>
+</th>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><a href="com/alumiboti5590/eop/subsystems/drivetrain/tank/SparkMaxBrushlessTankDrive.html" title="class in com.alumiboti5590.eop.subsystems.drivetrain.tank">SparkMaxBrushlessTankDrive</a></td>
 <th class="colLast" scope="row">
 <div class="block">A TankDrive implementation using Spark Max motor controllers to control <strong>brushless</strong> motors.</div>
 </th>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><a href="com/alumiboti5590/eop/subsystems/drivetrain/tank/TalonSRXBrushedTankDrive.html" title="class in com.alumiboti5590.eop.subsystems.drivetrain.tank">TalonSRXBrushedTankDrive</a></td>
 <th class="colLast" scope="row">
 <div class="block">A TankDrive implementation using Talon SRX motor controllers to control <strong>brushed</strong> motors.</div>
 </th>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><a href="com/alumiboti5590/eop/subsystems/drivetrain/tank/TankDrive.html" title="class in com.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive</a></td>
 <th class="colLast" scope="row">
 <div class="block">TankDrive abstracts out the control methods needed for a Tank Drive chassis subsystem, where
  each side of the robot acts as it's own system, similar to a tank - hence the name.</div>
 </th>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><a href="com/alumiboti5590/eop/subsystems/drivetrain/tank/TankDrive.TeleopDriveType.html" title="enum in com.alumiboti5590.eop.subsystems.drivetrain.tank">TankDrive.TeleopDriveType</a></td>
 <th class="colLast" scope="row">
 <div class="block">TeleopDriveType is an enumeration that allows for selecting the drive type during
  the tele-operated period for a tank drive chassis.</div>
 </th>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><a href="com/alumiboti5590/eop/controllers/XboxController.html" title="class in com.alumiboti5590.eop.controllers">XboxController</a></td>
 <th class="colLast" scope="row">
 <div class="block">A subclass of the WPILib XboxController containing useful additions such as deadzone management
