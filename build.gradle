@@ -1,3 +1,11 @@
+repositories {
+    mavenCentral()
+    // The official repository for all WPILib and FRC-related artifacts
+    maven {
+        url = "https://frcmaven.wpi.edu/artifactory/release/"
+    }
+}
+
 plugins {
     id 'java-library'
     id 'maven-publish'
@@ -8,9 +16,16 @@ group = 'com.team5590.eyeofprovidence'
 version = '0.1.0'
 
 dependencies {
-    // If your library needs WPILib classes (SubsystemBase, Command, etc.)
-    implementation 'org.wpilib.first.wpilibj:wpilibj-java:2026.+'
-    implementation 'org.wpilib.first.ntcore:ntcore-java:2026.+'
+    // 1. Core WPILib (SubsystemBase, Component classes, Hardware wrappers)
+    implementation 'edu.wpi.first.wpilibj:wpilibj-java:2026.+'
+    
+    // 2. Command-Based Framework (Command, SequentialCommandGroup, Trigger, etc.)
+    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2026.+'
+    
+    // 3. Core Math and Utilities (Geometry, Kinematics, Units, NetworkTables)
+    implementation 'edu.wpi.first.wpimath:wpimath-java:2026.+'
+    implementation 'edu.wpi.first.wpiutil:wpiutil-java:2026.+'
+    implementation 'edu.wpi.first.ntcore:ntcore-java:2026.+'
 }
 
 publishing {
