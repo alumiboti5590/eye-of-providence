@@ -1,5 +1,9 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
+import groovy.json.JsonSlurper
+import org.gradle.internal.os.OperatingSystem
+
+buildscript {
+   ext.WPI_VER = "2026.2.1"
+}
 
 plugins {
     id 'java'
@@ -7,9 +11,62 @@ plugins {
     id 'maven-publish'
 }
 
+// Create a custom configuration bucket to hold the native zip archives
+configurations {
+    nativeLibs
+}
+
+// Dynamically determine the host operating system classifier
+def osClassifier = "linuxx86-64" // Default fallback for GitHub Actions
+if (OperatingSystem.current().isWindows()) {
+    osClassifier = "windowsx86-64"
+} else if (OperatingSystem.current().isMacOsX()) {
+    osClassifier = "osxuniversal"
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
+}
+
+// Ensure these match your team's naming conventions
+group = 'com.alumiboti5590' 
+version = '0.1.0'
+
+// =========================================================================
+// 🔄 AUTOMATIC VENDORDEP PARSER
+// =========================================================================
+// This script parses standard FRC JSON files exactly like GradleRIO does.
+def vendorRepos = []
+def vendorDeps = []
+def vendorNativeDeps = [] 
+def vendordepsDir = file('vendordeps')
+
+if (vendordepsDir.exists()) {
+    vendordepsDir.eachFileMatch(~/.*\.json/) { jsonFile ->
+        def parsedJson = new JsonSlurper().parse(jsonFile)
+        if (parsedJson.mavenUrls) {
+            vendorRepos.addAll(parsedJson.mavenUrls)
+        }
+        if (parsedJson.javaDependencies) {
+            parsedJson.javaDependencies.each { dep ->
+                vendorDeps.add("${dep.groupId}:${dep.artifactId}:${dep.version}")
+            }
+        }
+        if (parsedJson.jniDependencies) {
+            parsedJson.jniDependencies.each { dep ->
+                // Only collect if it explicitly supports our desktop OS
+                if (dep.validPlatforms && dep.validPlatforms.contains(osClassifier)) {
+                    vendorNativeDeps.add([
+                        groupId   : dep.groupId,
+                        artifactId: dep.artifactId,
+                        version   : dep.version,
+                        isJar     : dep.isJar ?: false
+                    ])
+                }
+            }
+        }
+    }
 }
 
 repositories {
@@ -18,56 +75,83 @@ repositories {
     maven {
         url = "https://frcmaven.wpi.edu/artifactory/release/"
     }
+    
+    // Dynamically inject the repository URLs found inside your vendordeps JSONs
+    vendorRepos.unique().each { repoUrl ->
+        maven { url = repoUrl }
+    }
 }
-
-// Ensure these match your team's naming conventions
-group = 'com.alumiboti5590' 
-version = '0.1.0'
 
 dependencies {
     // =========================================================================
     // 1. Core WPILib & FRC Framework Libraries
     // =========================================================================
-    // These pull in the essential classes needed to build subsystems, commands, 
-    // and process robot geometry/kinematics.
-    implementation 'edu.wpi.first.wpilibj:wpilibj-java:2026.+'
-    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2026.+'
-    implementation 'edu.wpi.first.wpimath:wpimath-java:2026.+'
-    implementation 'edu.wpi.first.wpiutil:wpiutil-java:2026.+'
-    implementation 'edu.wpi.first.ntcore:ntcore-java:2026.+'
+    implementation "edu.wpi.first.wpilibj:wpilibj-java:${WPI_VER}"
+    implementation "edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:${WPI_VER}"
+    implementation "edu.wpi.first.wpimath:wpimath-java:${WPI_VER}"
+    implementation "edu.wpi.first.wpiunits:wpiunits-java:${WPI_VER}"
+    implementation "edu.wpi.first.wpiutil:wpiutil-java:${WPI_VER}"
+    implementation "edu.wpi.first.ntcore:ntcore-java:${WPI_VER}"
+
+    // Tells Gradle to pull the C++ zip matching your specific computer platform
+    nativeLibs "edu.wpi.first.ntcore:ntcore-cpp:${WPI_VER}:${osClassifier}@zip"
+    nativeLibs "edu.wpi.first.hal:hal-cpp:${WPI_VER}:${osClassifier}@zip"
+    nativeLibs "edu.wpi.first.wpiutil:wpiutil-cpp:${WPI_VER}:${osClassifier}@zip"
+    nativeLibs "edu.wpi.first.wpimath:wpimath-cpp:${WPI_VER}:${osClassifier}@zip"
+    nativeLibs "edu.wpi.first.wpinet:wpinet-cpp:${WPI_VER}:${osClassifier}@zip"
 
     // =========================================================================
-    // 2. Compile-Time Tools & Metadata Annotations
+    // 2. Data Processing & Utilities (Jackson JSON Engine)
     // =========================================================================
-    // Satisfies the compiler when it scans JSON/network processing annotations.
-    // 'compileOnly' ensures this doesn't bloat our final published jar file.
-    compileOnly 'com.fasterxml.jackson.core:jackson-annotations:2.17.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
 
     // =========================================================================
     // 3. Unit Testing Architecture (JUnit 5)
     // =========================================================================
-    // The Bill of Materials (BOM) enforces uniform versions across all JUnit modules.
     testImplementation platform('org.junit:junit-bom:5.10.2')
-    
-    // Main testing engine for writing and evaluating unit tests
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    // Core Mockito framework (includes mockStatic capabilities natively in 5.x)
+    testImplementation 'org.mockito:mockito-core:5.11.0'
+    // Integrates Mockito seamlessly with the JUnit 5 lifecycle
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.11.0'
 
     // =========================================================================
     // 4. Test Runtime Support Dependencies
     // =========================================================================
-    // Explicitly handles the execution engine required by modern Gradle 8+/9.0 systems
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    
-    // Provides serialization protocols needed when testing WPILib math objects 
-    // (like Rotation2d or Pose2d) outside of a live RoboRIO environment
     testRuntimeOnly 'us.hebi.quickbuf:quickbuf-runtime:1.4'
+
+    // =========================================================================
+    // 5. Third-Party Vendor Libraries (Dynamically Loaded)
+    // =========================================================================
+    // This loops through and pulls every Java dependency specified in your JSONs
+    vendorDeps.each { depCoordinates ->
+        implementation depCoordinates
+    }
+
+    vendorNativeDeps.unique().each { dep ->
+        // Handle platform-independent header packages gracefully (like api-cpp)
+        def classifier = (dep.artifactId == "api-cpp") ? "" : ":${osClassifier}"
+        
+        if (dep.isJar) {
+            // 📦 Group A: Native binaries packaged inside a standard Java .jar archive
+            // Evaluates when 'isJar: true' is explicitly specified in the JSON file.
+            nativeLibs "${dep.groupId}:${dep.artifactId}:${dep.version}${classifier}"
+        } else {
+            // 🗜️ Group B: Native binaries packaged inside a standard C++ .zip archive
+            // Evaluates when 'isJar: false' or when the property is missing entirely.
+            nativeLibs "${dep.groupId}:${dep.artifactId}:${dep.version}${classifier}@zip"
+        }
+    }
 }
 
+// =========================================================================
+// 🚀 Publishing Configuration
+// =========================================================================
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-            
             groupId = project.group
             artifactId = 'eyeofprovidence'
             version = project.version
@@ -75,45 +159,60 @@ publishing {
     }
     repositories {
         maven {
-            // This builds a structured maven folder locally inside build/repo
             url = layout.buildDirectory.dir("repo")
         }
     }
 }
 
+// =========================================================================
+// 🧪 Test Suite Reporting Configuration
+// =========================================================================
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+// Automatically unpacks the .dylib, .dll, or .so files into a local build folder
+tasks.register('extractNativeLibs', Copy) {
+    from configurations.nativeLibs.collect { zipTree(it) }
+    include "**/*.dll", "**/*.dylib", "**/*.so"
+    eachFile { path = name } // 💡 Crucial: Flattens the folders so files land in the root
+    includeEmptyDirs = false
+    into layout.buildDirectory.dir("nativeLibs")
+}
+
 tasks.withType(Test) {
     useJUnitPlatform()
 
+    // Force the test task to wait until the native extraction finishes
+    dependsOn tasks.named('extractNativeLibs')
+    
+    // Inject the extraction directory directly into the JVM library path
+    systemProperty "java.library.path", layout.buildDirectory.dir("nativeLibs").get().asFile.absolutePath
+
     testLogging {
-        // set options for log level LIFECYCLE
-        events TestLogEvent.FAILED,
-               TestLogEvent.PASSED,
-               TestLogEvent.SKIPPED,
-               TestLogEvent.STANDARD_OUT
+        events TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.STANDARD_OUT
         exceptionFormat TestExceptionFormat.FULL
         showExceptions true
         showCauses true
         showStackTraces true
 
-        // set options for log level DEBUG and INFO
         debug {
-            events TestLogEvent.STARTED,
-                   TestLogEvent.FAILED,
-                   TestLogEvent.PASSED,
-                   TestLogEvent.SKIPPED,
-                   TestLogEvent.STANDARD_ERROR,
-                   TestLogEvent.STANDARD_OUT
+            events TestLogEvent.STARTED, TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.STANDARD_ERROR, TestLogEvent.STANDARD_OUT
             exceptionFormat TestExceptionFormat.FULL
         }
         info.events = debug.events
         info.exceptionFormat = debug.exceptionFormat
 
         afterSuite { desc, result ->
-            if (!desc.parent) { // will match the outermost suite
+            if (!desc.parent) {
+                def ANSI_RESET = "\u001B[0m"
+                def ANSI_GREEN = "\u001B[32m"
+                def ANSI_RED   = "\u001B[31m"
+                def isSuccess = result.resultType.toString() == "SUCCESS"
+                def bannerColor = isSuccess ? ANSI_GREEN : ANSI_RED
                 def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)"
                 def startItem = '|  ', endItem = '  |'
                 def repeatLength = startItem.length() + output.length() + endItem.length()
-                println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+                println('\n' + ('-' * repeatLength) + '\n' + startItem + bannerColor + output + ANSI_RESET + endItem + '\n' + ('-' * repeatLength))
             }
         }
     }
