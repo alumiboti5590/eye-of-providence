@@ -22,7 +22,7 @@ repositories {
 }
 
 // Ensure these match your team's naming conventions
-group = 'com.team5590.eyeofprovidence' 
+group = 'com.alumiboti5590' 
 version = '0.1.0'
 
 dependencies {
