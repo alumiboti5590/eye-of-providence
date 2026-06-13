@@ -5,7 +5,6 @@ plugins {
     id 'java'
     id 'java-library'
     id 'maven-publish'
-    id "edu.wpi.first.GradleRIO" version "2026.2.1"
 }
 
 java {
@@ -26,22 +25,52 @@ group = 'com.alumiboti5590'
 version = '0.1.0'
 
 dependencies {
-    // 1. Core WPILib (SubsystemBase, Component classes, Hardware wrappers)
+    // =========================================================================
+    // 1. Core WPILib & FRC Framework Libraries
+    // =========================================================================
+    // These pull in the essential classes needed to build subsystems, commands, 
+    // and process robot geometry/kinematics.
     implementation 'edu.wpi.first.wpilibj:wpilibj-java:2026.+'
-    
-    // 2. Command-Based Framework (Command, SequentialCommandGroup, Trigger, etc.)
     implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2026.+'
-    
-    // 3. Core Math and Utilities (Geometry, Kinematics, Units, NetworkTables)
     implementation 'edu.wpi.first.wpimath:wpimath-java:2026.+'
     implementation 'edu.wpi.first.wpiutil:wpiutil-java:2026.+'
     implementation 'edu.wpi.first.ntcore:ntcore-java:2026.+'
+
+    // =========================================================================
+    // 2. Compile-Time Tools & Metadata Annotations
+    // =========================================================================
+    // Satisfies the compiler when it scans JSON/network processing annotations.
+    // 'compileOnly' ensures this doesn't bloat our final published jar file.
+    compileOnly 'com.fasterxml.jackson.core:jackson-annotations:2.17.2'
+
+    // =========================================================================
+    // 3. Unit Testing Architecture (JUnit 5)
+    // =========================================================================
+    // The Bill of Materials (BOM) enforces uniform versions across all JUnit modules.
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    
+    // Main testing engine for writing and evaluating unit tests
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // =========================================================================
+    // 4. Test Runtime Support Dependencies
+    // =========================================================================
+    // Explicitly handles the execution engine required by modern Gradle 8+/9.0 systems
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    
+    // Provides serialization protocols needed when testing WPILib math objects 
+    // (like Rotation2d or Pose2d) outside of a live RoboRIO environment
+    testRuntimeOnly 'us.hebi.quickbuf:quickbuf-runtime:1.4'
 }
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
+            
+            groupId = project.group
+            artifactId = 'eyeofprovidence'
+            version = project.version
         }
     }
     repositories {
@@ -53,6 +82,8 @@ publishing {
 }
 
 tasks.withType(Test) {
+    useJUnitPlatform()
+
     testLogging {
         // set options for log level LIFECYCLE
         events TestLogEvent.FAILED,
