@@ -130,17 +130,14 @@ dependencies {
     }
 
     vendorNativeDeps.unique().each { dep ->
-        // Handle platform-independent header packages gracefully (like api-cpp)
-        def classifier = (dep.artifactId == "api-cpp") ? "" : ":${osClassifier}"
-        
         if (dep.isJar) {
             // 📦 Group A: Native binaries packaged inside a standard Java .jar archive
             // Evaluates when 'isJar: true' is explicitly specified in the JSON file.
-            nativeLibs "${dep.groupId}:${dep.artifactId}:${dep.version}${classifier}"
+            nativeLibs "${dep.groupId}:${dep.artifactId}:${dep.version}${osClassifier}"
         } else {
             // 🗜️ Group B: Native binaries packaged inside a standard C++ .zip archive
             // Evaluates when 'isJar: false' or when the property is missing entirely.
-            nativeLibs "${dep.groupId}:${dep.artifactId}:${dep.version}${classifier}@zip"
+            nativeLibs "${dep.groupId}:${dep.artifactId}:${dep.version}${osClassifier}@zip"
         }
     }
 }
