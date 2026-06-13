@@ -92,6 +92,7 @@ dependencies {
     implementation "edu.wpi.first.wpiunits:wpiunits-java:${WPI_VER}"
     implementation "edu.wpi.first.wpiutil:wpiutil-java:${WPI_VER}"
     implementation "edu.wpi.first.ntcore:ntcore-java:${WPI_VER}"
+    implementation "edu.wpi.first.hal:hal-java:${WPI_VER}"
 
     // Tells Gradle to pull the C++ zip matching your specific computer platform
     nativeLibs "edu.wpi.first.ntcore:ntcore-cpp:${WPI_VER}:${osClassifier}@zip"
