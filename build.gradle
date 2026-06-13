@@ -1,0 +1,28 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+// Ensure these match your team's naming conventions
+group = 'com.team5590.eyeofprovidence' 
+version = '0.1.0'
+
+dependencies {
+    // If your library needs WPILib classes (SubsystemBase, Command, etc.)
+    implementation 'org.wpilib.first.wpilibj:wpilibj-java:2026.+'
+    implementation 'org.wpilib.first.ntcore:ntcore-java:2026.+'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            // This builds a structured maven folder locally inside build/repo
+            url = layout.buildDirectory.dir("repo")
+        }
+    }
+}
