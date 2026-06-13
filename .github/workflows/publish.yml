@@ -1,0 +1,36 @@
+name: Publish Maven Repository
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers whenever you push a tag like v1.0.0, v1.1.2, etc.
+  workflow_dispatch: # Allows you to trigger this manually from the Actions tab
+
+permissions:
+  contents: write # Needed to update the gh-pages branch
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17' # Match this to whatever version your current WPILib year uses
+          distribution: 'temurin'
+
+      - name: Grant Execute Permission to Gradle
+        run: chmod +x gradlew
+
+      - name: Build and Publish Locally
+        run: ./gradlew publish
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # The branch the action pushes the files to
+          folder: build/repo # The folder compiled by your build step
+          clean: false # CRITICAL: Keeps old library versions from being deleted!
