@@ -1,3 +1,5 @@
+![Logo](img/eye-of-providence-logo.png)
+
 # Eye of Providence — Team 5590 (The Alumiboti) Shared Library
 
 Welcome to the **Eye of Providence**, Team 5590's common Java library! This repository hosts our reusable subsystems, custom command wrappers, math utilities, and vision/sensor abstractions that we carry over from season to season. 
