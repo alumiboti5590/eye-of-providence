@@ -31,7 +31,7 @@ java {
 
 // Ensure these match your team's naming conventions
 group = 'com.alumiboti5590' 
-version = '0.1.0'
+version = '0.1.1'
 
 // =========================================================================
 // 🔄 AUTOMATIC VENDORDEP PARSER
