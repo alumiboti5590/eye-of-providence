@@ -86,6 +86,18 @@ public class PhotonVisionCameraSubsystem extends SubsystemBase implements ICamer
     }
 
     /**
+     * Constructor used for testing purposes that enables more easily-accessible configuration via Dependency Injection
+     * @param camera
+     * @param estimator
+     */
+    public PhotonVisionCameraSubsystem(PhotonCamera camera, PhotonPoseEstimator estimator) {
+        super(camera.getName() + "_PhotonVisionCameraSubsystem");
+        this.camera = camera;
+        this.photonEstimator = estimator;
+        this.pipelineResult = new PhotonPipelineResult();
+    }
+
+    /**
      * Exposes the raw underlying PhotonCamera handle.
      * * @return The active PhotonCamera object instance.
      */
