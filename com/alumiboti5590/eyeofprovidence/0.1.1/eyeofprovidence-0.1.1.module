@@ -1,0 +1,153 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.alumiboti5590",
+    "module": "eyeofprovidence",
+    "version": "0.1.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.11"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "eyeofprovidence-0.1.1.jar",
+          "url": "eyeofprovidence-0.1.1.jar",
+          "size": 19774,
+          "sha512": "3999f998180ac233868a7bc8ff2231c519a136a27dec94cbfca2c5a72a545e6b9eedaa270f28bbc39eecc869d9cf6c4410152fd81d7ad33e27329d4827fa0ebc",
+          "sha256": "7637321fe216310398944c8fca588c175c8cdd79821ae5ebd129b76b144b8402",
+          "sha1": "991fc2c85ebf6d3e593126a38a2d28b3172ebb84",
+          "md5": "167cbe630fa1e68302ffd2fd1322960d"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "edu.wpi.first.wpilibj",
+          "module": "wpilibj-java",
+          "version": {
+            "requires": "2026.2.1"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpilibNewCommands",
+          "module": "wpilibNewCommands-java",
+          "version": {
+            "requires": "2026.2.1"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpimath",
+          "module": "wpimath-java",
+          "version": {
+            "requires": "2026.2.1"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpiunits",
+          "module": "wpiunits-java",
+          "version": {
+            "requires": "2026.2.1"
+          }
+        },
+        {
+          "group": "edu.wpi.first.wpiutil",
+          "module": "wpiutil-java",
+          "version": {
+            "requires": "2026.2.1"
+          }
+        },
+        {
+          "group": "edu.wpi.first.apriltag",
+          "module": "apriltag-java",
+          "version": {
+            "requires": "2026.2.1"
+          }
+        },
+        {
+          "group": "edu.wpi.first.ntcore",
+          "module": "ntcore-java",
+          "version": {
+            "requires": "2026.2.1"
+          }
+        },
+        {
+          "group": "edu.wpi.first.hal",
+          "module": "hal-java",
+          "version": {
+            "requires": "2026.2.1"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-databind",
+          "version": {
+            "requires": "2.17.2"
+          }
+        },
+        {
+          "group": "org.photonvision",
+          "module": "photonlib-java",
+          "version": {
+            "requires": "v2026.3.1"
+          }
+        },
+        {
+          "group": "org.photonvision",
+          "module": "photontargeting-java",
+          "version": {
+            "requires": "v2026.3.1"
+          }
+        },
+        {
+          "group": "com.revrobotics.frc",
+          "module": "REVLib-java",
+          "version": {
+            "requires": "2026.0.5"
+          }
+        },
+        {
+          "group": "com.ctre.phoenix6",
+          "module": "wpiapi-java",
+          "version": {
+            "requires": "26.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "eyeofprovidence-0.1.1.jar",
+          "url": "eyeofprovidence-0.1.1.jar",
+          "size": 19774,
+          "sha512": "3999f998180ac233868a7bc8ff2231c519a136a27dec94cbfca2c5a72a545e6b9eedaa270f28bbc39eecc869d9cf6c4410152fd81d7ad33e27329d4827fa0ebc",
+          "sha256": "7637321fe216310398944c8fca588c175c8cdd79821ae5ebd129b76b144b8402",
+          "sha1": "991fc2c85ebf6d3e593126a38a2d28b3172ebb84",
+          "md5": "167cbe630fa1e68302ffd2fd1322960d"
+        }
+      ]
+    }
+  ]
+}
